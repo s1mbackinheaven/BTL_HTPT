@@ -1,0 +1,125 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: btl-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: adminmySQL2004
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init-mysql.sql:/docker-entrypoint-initdb.d/init-mysql.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-padminmySQL2004"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: btl-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  auth-service:
+    build: ./services/auth-service
+    container_name: auth-service
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: adminmySQL2004
+      AUTH_DB_NAME: auth_db
+      AUTH_SERVICE_PORT: 8001
+      JWT_SECRET: change_me_please
+      JWT_ALGORITHM: HS256
+    ports:
+      - "8001:8001"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8001
+
+  product-service:
+    build: ./services/product-service
+    container_name: product-service
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: adminmySQL2004
+      PRODUCT_DB_NAME: product_db
+      PRODUCT_SERVICE_PORT: 8002
+    ports:
+      - "8002:8002"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8002
+
+  order-service:
+    build: ./services/order-service
+    container_name: order-service
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: adminmySQL2004
+      ORDER_DB_NAME: order_db
+      ORDER_SERVICE_PORT: 8003
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "8003:8003"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8003
+
+  notification-service:
+    build: ./services/notification-service
+    container_name: notification-service
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: adminmySQL2004
+      NOTIFICATION_DB_NAME: notification_db
+      NOTIFICATION_SERVICE_PORT: 8004
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "8004:8004"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8004
+
+  api-gateway:
+    build: ./services/api-gateway
+    container_name: api-gateway
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+      - notification-service
+    environment:
+      GATEWAY_PORT: 8000
+      AUTH_SERVICE_URL: http://auth-service:8001
+      PRODUCT_SERVICE_URL: http://product-service:8002
+      ORDER_SERVICE_URL: http://order-service:8003
+      NOTIFICATION_SERVICE_URL: http://notification-service:8004
+      JWT_SECRET: change_me_please
+      JWT_ALGORITHM: HS256
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+volumes:
+  mysql_data:
