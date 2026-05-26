@@ -105,3 +105,13 @@
 2026-05-26 11:04:36,960 | INFO | auth-service.http | request | request_id=b70a173c-a6b6-419e-a641-98ecab5dc894 | method=GET | path=/users | status_code=200 | elapsed_ms=9.18
 2026-05-26 11:04:37,551 | INFO | auth-service.http | request | request_id=3c4edad8-e8a9-46ab-9754-44cefced2eca | method=GET | path=/users | status_code=200 | elapsed_ms=6.36
 2026-05-26 11:05:40,057 | INFO | auth-service.http | request | request_id=65c4a3af-2d58-4dd9-9318-462c9e8790e7 | method=GET | path=/users | status_code=200 | elapsed_ms=5.51
+2026-05-26 11:18:57,131 | INFO | auth-service.http | request | request_id=- | method=POST | path=/auth/login | status_code=200 | elapsed_ms=228.74
+2026-05-26 11:19:15,424 | INFO | auth-service.http | request | request_id=ca5af0b8-6de5-4793-a350-c4e5268fc71e | method=GET | path=/auth/me | status_code=200 | elapsed_ms=7.43
+2026-05-26 11:19:15,976 | INFO | auth-service.http | request | request_id=43f223b5-8a07-442d-b96d-61b4c6f6222c | method=GET | path=/auth/me | status_code=200 | elapsed_ms=7.01
+2026-05-26 11:25:25,349 | INFO | auth-service.http | request | request_id=1616082a-41af-4402-b929-86b8106e14ce | method=GET | path=/auth/me | status_code=200 | elapsed_ms=6.03
+2026-05-26 11:25:25,858 | INFO | auth-service.http | request | request_id=5e8b2a15-05ed-455b-a188-97a9301584b9 | method=GET | path=/auth/me | status_code=200 | elapsed_ms=6.80
+2026-05-26 11:33:08,056 | INFO | auth-service.http | request | request_id=35574886-2810-4add-ab2a-e31ad681b994 | method=POST | path=/auth/login | status_code=200 | elapsed_ms=193.47
+2026-05-26 11:34:24,611 | INFO | auth-service.http | request | request_id=8282e7db-ba84-4806-8f5c-1cd57f5353c2 | method=GET | path=/auth/me | status_code=200 | elapsed_ms=6.02
+2026-05-26 11:34:25,225 | INFO | auth-service.http | request | request_id=1caaae92-1d44-4bb0-9e46-5b80b08af2b8 | method=GET | path=/auth/me | status_code=200 | elapsed_ms=6.32
+2026-05-26 11:34:31,910 | INFO | auth-service.http | request | request_id=da63ed92-a4b7-4dd9-be76-c4b35adadf35 | method=GET | path=/users | status_code=200 | elapsed_ms=11.94
+2026-05-26 11:34:32,528 | INFO | auth-service.http | request | request_id=3359b542-1179-474b-a472-38b1f34455c9 | method=GET | path=/users | status_code=200 | elapsed_ms=8.20

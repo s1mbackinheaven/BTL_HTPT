@@ -111,3 +111,8 @@
 2026-05-26 11:24:23,456 | INFO | app.messaging | processed order.status_updated event for order_id=10 request_id=None
 2026-05-26 11:25:25,357 | INFO | notification-service.http | request | request_id=f7266568-a721-4065-aecb-2809b698cdfa | method=GET | path=/notifications | status_code=200 | elapsed_ms=7.40
 2026-05-26 11:25:26,134 | INFO | notification-service.http | request | request_id=a2a1d013-7284-4230-ac71-7cb68f9e7d69 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.63
+2026-05-26 11:34:00,729 | INFO | app.messaging | processed order.status_updated event for order_id=10 request_id=d0da2f78-2d1b-4c62-8c14-25fb196209f2
+2026-05-26 11:34:24,970 | INFO | notification-service.http | request | request_id=526f22f6-7edc-4d9d-9646-32fcdc46a2b7 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.43
+2026-05-26 11:34:25,410 | INFO | notification-service.http | request | request_id=82a095ff-5204-41a8-b823-133968b9fb79 | method=GET | path=/notifications | status_code=200 | elapsed_ms=6.56
+2026-05-26 11:34:31,555 | INFO | notification-service.http | request | request_id=d1baaf23-b726-4c10-ad03-427dd7b73b97 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.70
+2026-05-26 11:34:32,268 | INFO | notification-service.http | request | request_id=be6b7b5a-5ff5-406e-9fae-66cdfea43218 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.71

@@ -210,3 +210,9 @@
 2026-05-26 11:05:40,496 | INFO | product-service.http | request | request_id=b838e0f5-eedc-4df7-8aa8-3ca599e77f1a | method=GET | path=/products | status_code=200 | elapsed_ms=5.08
 2026-05-26 11:05:43,009 | INFO | product-service.http | request | request_id=8efe67c1-b136-4b5d-a3dd-c1c00e65a1c5 | method=GET | path=/products | status_code=200 | elapsed_ms=5.26
 2026-05-26 11:05:43,420 | INFO | product-service.http | request | request_id=ce523e66-09e9-4626-9696-1a894eb78eaf | method=GET | path=/products | status_code=200 | elapsed_ms=4.65
+2026-05-26 11:34:19,044 | INFO | product-service.http | request | request_id=f98bfa69-769b-46ec-bfe0-a7d511be1452 | method=GET | path=/products/4 | status_code=200 | elapsed_ms=47.98
+2026-05-26 11:34:19,044 | INFO | product-service.http | request | request_id=3e393e97-7b7a-422d-b091-4fd8b83aa25c | method=GET | path=/products/5 | status_code=200 | elapsed_ms=50.22
+2026-05-26 11:34:19,624 | INFO | product-service.http | request | request_id=1b66d31b-2a9a-4537-9e98-40edc137f31a | method=GET | path=/products/4 | status_code=200 | elapsed_ms=4.78
+2026-05-26 11:34:19,653 | INFO | product-service.http | request | request_id=c568259c-0b4c-4a72-ae1b-a05f3d90ecc7 | method=GET | path=/products/5 | status_code=200 | elapsed_ms=5.66
+2026-05-26 11:34:31,903 | INFO | product-service.http | request | request_id=175aa940-7370-4a2b-93d1-f736aea63b16 | method=GET | path=/products | status_code=200 | elapsed_ms=6.84
+2026-05-26 11:34:32,326 | INFO | product-service.http | request | request_id=4c84b446-3d20-434d-a185-ca37d957f530 | method=GET | path=/products | status_code=200 | elapsed_ms=4.87
