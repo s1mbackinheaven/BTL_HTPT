@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.models.notification import Notification
+from app.request_id import set_request_id
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,8 @@ def start_consumer(session_factory):
 
     def callback(ch, method, properties, body):
         db: Session = session_factory()
+        request_id = (properties.headers or {}).get("x-request-id") if properties and properties.headers else None
+        set_request_id(request_id)
         try:
             payload = json.loads(body.decode())
             notification = Notification(
@@ -36,10 +39,10 @@ def start_consumer(session_factory):
             db.add(notification)
             db.commit()
             ch.basic_ack(delivery_tag=method.delivery_tag)
-            logger.info("processed order.created event for order_id=%s", payload.get("order_id"))
+            logger.info("processed order.created event for order_id=%s request_id=%s", payload.get("order_id"), request_id)
         except Exception:
             db.rollback()
-            logger.exception("failed to process order.created message")
+            logger.exception("failed to process order.created message request_id=%s", request_id)
             ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
         finally:
             db.close()

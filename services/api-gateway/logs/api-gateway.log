@@ -1,0 +1,6 @@
+2026-05-26 08:13:18,563 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 08:13:18,563 | INFO | api-gateway.http | request | request_id=c6f6284c-46a2-4226-acd4-0d32abb72637 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=491.08
+2026-05-26 08:14:18,587 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/1 "HTTP/1.1 200 OK"
+2026-05-26 08:14:18,587 | INFO | api-gateway.http | request | request_id=fa0c5ff3-d1d3-466a-81d5-037cc60b7b67 | method=GET | path=/api/orders/1 | status_code=200 | elapsed_ms=438.67
+2026-05-26 08:15:20,022 | INFO | httpx | HTTP Request: POST http://localhost:8003/orders "HTTP/1.1 201 Created"
+2026-05-26 08:15:20,024 | INFO | api-gateway.http | request | request_id=411f71e4-42ae-4601-b612-24cb73e3ea91 | method=POST | path=/api/orders | status_code=201 | elapsed_ms=2622.53

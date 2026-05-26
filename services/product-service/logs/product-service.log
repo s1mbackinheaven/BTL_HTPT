@@ -1,0 +1,1 @@
+2026-05-26 08:15:19,862 | INFO | product-service.http | request | request_id=- | method=GET | path=/products/1 | status_code=200 | elapsed_ms=10.69

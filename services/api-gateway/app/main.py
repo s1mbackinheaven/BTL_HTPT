@@ -3,15 +3,23 @@ from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
 
 from app.config import settings
+from app.correlation import get_request_id
+from app.logging_utils import configure_logging, get_logger
 from app.monitoring import ServiceCheck, check_service_health
 from app.proxy import forward_request
+from app.request_logging import RequestLoggingMiddleware
 from app.security import require_token
 
+configure_logging("api-gateway")
+logger = get_logger("api-gateway")
+
 app = FastAPI(title=settings.SERVICE_NAME)
+app.add_middleware(RequestLoggingMiddleware)
 
 
 @app.get("/health", summary="Gateway health check", description="Check whether the API Gateway is running successfully.")
 def health_check():
+    logger.info("health check requested request_id=%s", get_request_id())
     return {"status": "ok", "service": settings.SERVICE_NAME}
 
 

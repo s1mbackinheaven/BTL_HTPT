@@ -1,0 +1,1 @@
+2026-05-26 08:13:18,560 | INFO | auth-service.http | request | request_id=c6f6284c-46a2-4226-acd4-0d32abb72637 | method=GET | path=/auth/me | status_code=200 | elapsed_ms=13.66

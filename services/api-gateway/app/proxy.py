@@ -1,8 +1,7 @@
-import json
-from collections.abc import Mapping
-
 import httpx
-from fastapi import HTTPException, Request, status
+from fastapi import HTTPException, Request, Response, status
+
+from app.correlation import get_request_id
 
 
 async def forward_request(
@@ -12,13 +11,14 @@ async def forward_request(
     *,
     json_body: dict | None = None,
     form_body: dict | None = None,
-) -> httpx.Response:
+) -> Response:
     url = f"{target_url.rstrip('/')}/{path_suffix.lstrip('/')}"
     query_string = request.url.query
     if query_string:
         url = f"{url}?{query_string}"
 
     headers = {k: v for k, v in request.headers.items() if k.lower() not in {"host", "content-length", "content-type"}}
+    headers["x-request-id"] = get_request_id()
     kwargs: dict = {"method": request.method, "url": url, "headers": headers}
     if json_body is not None:
         kwargs["json"] = json_body
@@ -42,9 +42,9 @@ async def forward_request(
         for k, v in upstream.headers.items()
         if k.lower() not in {"content-length", "transfer-encoding", "connection", "content-encoding"}
     }
-    return httpx.Response(
+    return Response(
+        content=upstream.content,
         status_code=upstream.status_code,
         headers=response_headers,
-        content=upstream.content,
-        request=upstream.request,
+        media_type=upstream.headers.get("content-type"),
     )
