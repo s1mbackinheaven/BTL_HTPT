@@ -18,3 +18,7 @@
 2026-05-26 08:15:20,016 | INFO | pika.adapters.utils.io_services_utils | Closing transport socket and unlinking: state=3; <socket.socket fd=812, family=23, type=1, proto=6, laddr=('::1', 50501, 0, 0), raddr=('::1', 5672, 0, 0)>
 2026-05-26 08:15:20,016 | INFO | pika.adapters.blocking_connection | User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
 2026-05-26 08:15:20,022 | INFO | order-service.http | request | request_id=411f71e4-42ae-4601-b612-24cb73e3ea91 | method=POST | path=/orders | status_code=201 | elapsed_ms=2213.44
+2026-05-26 08:42:13,838 | INFO | order-service | health check requested
+2026-05-26 08:42:13,843 | INFO | order-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=31.98
+2026-05-26 09:10:32,322 | INFO | order-service | health check requested
+2026-05-26 09:10:32,326 | INFO | order-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=6.69

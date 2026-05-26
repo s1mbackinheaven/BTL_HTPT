@@ -1,1 +1,13 @@
 2026-05-26 08:13:18,560 | INFO | auth-service.http | request | request_id=c6f6284c-46a2-4226-acd4-0d32abb72637 | method=GET | path=/auth/me | status_code=200 | elapsed_ms=13.66
+2026-05-26 08:42:13,852 | INFO | auth-service | health check requested
+2026-05-26 08:42:13,859 | INFO | auth-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=31.05
+2026-05-26 09:10:32,321 | INFO | auth-service | health check requested
+2026-05-26 09:10:32,326 | INFO | auth-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=6.49
+2026-05-26 09:11:46,103 | INFO | auth-service.http | request | request_id=d0128905-9fb9-40f1-83be-a24833a696c9 | method=POST | path=/auth/login | status_code=200 | elapsed_ms=309.09
+2026-05-26 09:12:18,400 | INFO | auth-service.http | request | request_id=23033877-b1c9-4767-ad38-b18cbb654de9 | method=POST | path=/auth/login | status_code=200 | elapsed_ms=202.04
+2026-05-26 09:12:50,362 | INFO | auth-service.http | request | request_id=978c73ef-4293-4aa2-af61-f67c4754e4c7 | method=POST | path=/auth/login | status_code=200 | elapsed_ms=187.60
+2026-05-26 09:13:15,408 | INFO | auth-service.http | request | request_id=39f832ec-c3d8-48e4-b6a1-f104cb50006a | method=POST | path=/auth/login | status_code=200 | elapsed_ms=189.51
+2026-05-26 09:13:20,767 | INFO | auth-service.http | request | request_id=c39107a7-a96f-4335-97c5-23a80ec144d4 | method=POST | path=/auth/login | status_code=200 | elapsed_ms=182.23
+2026-05-26 09:13:23,655 | INFO | auth-service.http | request | request_id=e86e1aba-8733-4567-a17d-57de2b98e39b | method=POST | path=/auth/login | status_code=200 | elapsed_ms=183.94
+2026-05-26 09:13:42,175 | INFO | auth-service.http | request | request_id=d54d69b0-8d70-482e-82b1-23108d4c5579 | method=POST | path=/auth/login | status_code=401 | elapsed_ms=9.60
+2026-05-26 09:13:55,570 | INFO | auth-service.http | request | request_id=5615b30b-3abb-4cd1-b8d6-588c03ed3159 | method=POST | path=/auth/login | status_code=401 | elapsed_ms=5.17

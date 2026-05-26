@@ -1,1 +1,8 @@
 2026-05-26 08:15:19,862 | INFO | product-service.http | request | request_id=- | method=GET | path=/products/1 | status_code=200 | elapsed_ms=10.69
+2026-05-26 08:42:13,838 | INFO | product-service | health check requested
+2026-05-26 08:42:13,843 | INFO | product-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=25.80
+2026-05-26 09:10:32,323 | INFO | product-service | health check requested
+2026-05-26 09:10:32,325 | INFO | product-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=5.77
+2026-05-26 09:11:22,799 | INFO | product-service.http | request | request_id=cc4c4ba5-7bf9-42a8-9ba7-30eeff73dc65 | method=GET | path=/products | status_code=200 | elapsed_ms=115.91
+2026-05-26 09:11:23,225 | INFO | product-service.http | request | request_id=f2b2c36a-5951-480f-be74-4b6e6adb8ec0 | method=GET | path=/products | status_code=200 | elapsed_ms=4.78
+2026-05-26 09:11:23,656 | INFO | product-service.http | request | request_id=949bcf13-8d9d-4629-8d45-e8af4ce9fc1d | method=GET | path=/products | status_code=200 | elapsed_ms=5.05

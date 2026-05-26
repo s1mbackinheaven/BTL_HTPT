@@ -1,4 +1,5 @@
 from fastapi import Body, Depends, FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
 
@@ -14,6 +15,13 @@ configure_logging("api-gateway")
 logger = get_logger("api-gateway")
 
 app = FastAPI(title=settings.SERVICE_NAME)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.add_middleware(RequestLoggingMiddleware)
 
 

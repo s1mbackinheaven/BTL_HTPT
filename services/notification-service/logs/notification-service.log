@@ -13,3 +13,7 @@
 2026-05-26 08:12:17,527 | INFO | app.messaging | notification-service consumer started and waiting for messages
 2026-05-26 08:15:20,033 | INFO | app.messaging | processed order.created event for order_id=6 request_id=411f71e4-42ae-4601-b612-24cb73e3ea91
 2026-05-26 08:15:58,275 | INFO | notification-service.http | request | request_id=- | method=GET | path=/notifications | status_code=200 | elapsed_ms=7.80
+2026-05-26 08:42:13,841 | INFO | notification-service | health check requested
+2026-05-26 08:42:13,843 | INFO | notification-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=38.87
+2026-05-26 09:10:32,321 | INFO | notification-service | health check requested
+2026-05-26 09:10:32,323 | INFO | notification-service.http | request | request_id=- | method=GET | path=/health | status_code=200 | elapsed_ms=4.03
