@@ -70,3 +70,44 @@
 2026-05-26 10:27:52,761 | INFO | notification-service.http | request | request_id=eb9a937b-e93d-41b2-a1cd-cab904d3a583 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.55
 2026-05-26 10:31:21,976 | INFO | notification-service.http | request | request_id=617c0df5-3d02-479c-bddf-942f3dbf7156 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.38
 2026-05-26 10:31:22,580 | INFO | notification-service.http | request | request_id=ebf7b293-d4f6-4d2b-97c9-ef0aef9f957c | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.86
+2026-05-26 10:46:30,301 | INFO | notification-service.http | request | request_id=e9cccbe3-8851-4afa-95e4-4ae64aaf4bb6 | method=GET | path=/notifications | status_code=200 | elapsed_ms=16.62
+2026-05-26 10:46:30,739 | INFO | notification-service.http | request | request_id=48e29f41-12e1-4c28-83b5-54e4e2ebafcc | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.93
+2026-05-26 10:48:55,254 | INFO | notification-service.http | request | request_id=4a316c59-5806-476a-b332-9cccd7fa9836 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.54
+2026-05-26 10:49:00,979 | INFO | notification-service.http | request | request_id=1d0c4190-5766-451f-a9c4-16a1ce9b9293 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.94
+2026-05-26 10:49:19,253 | INFO | notification-service.http | request | request_id=4c885179-30ca-4524-811e-28ee4feaecba | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.85
+2026-05-26 10:49:48,079 | INFO | notification-service.http | request | request_id=bafc84e9-f222-41db-9962-aaebfb3eb4bb | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.23
+2026-05-26 10:50:25,375 | INFO | notification-service.http | request | request_id=9e9aac05-3b30-483a-a180-e60f9ed2adf5 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.52
+2026-05-26 10:51:48,481 | INFO | notification-service.http | request | request_id=1252d8d1-ca7a-454d-8839-8dc47d020692 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.96
+2026-05-26 10:51:49,120 | INFO | notification-service.http | request | request_id=4f9200a2-1aa6-4012-9d5e-082eaae64ee6 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.19
+2026-05-26 10:53:15,151 | INFO | notification-service.http | request | request_id=64b3f210-bf37-41cf-8ba6-0e97db734feb | method=GET | path=/notifications | status_code=200 | elapsed_ms=7.30
+2026-05-26 10:53:24,925 | INFO | notification-service.http | request | request_id=8304bacb-6d63-40e7-93fb-553f209d41c7 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.72
+2026-05-26 10:54:19,954 | INFO | app.messaging | processed order.created event for order_id=9 request_id=64d4d543-bb69-4b56-91ae-3963ba36d728
+2026-05-26 10:54:21,412 | INFO | notification-service.http | request | request_id=f52b13c6-c3d6-4414-9fbd-fd34b311add2 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.65
+2026-05-26 10:54:22,162 | INFO | notification-service.http | request | request_id=bdf459e3-2de7-4cbd-b5fc-b38bca1683fd | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.15
+2026-05-26 10:54:22,662 | INFO | app.messaging | processed order.created event for order_id=10 request_id=66a3aa76-2c08-406b-8258-62482c485958
+2026-05-26 10:54:29,356 | INFO | notification-service.http | request | request_id=413f0c10-c570-42d8-955c-2751974763bb | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.61
+2026-05-26 10:54:29,967 | INFO | notification-service.http | request | request_id=d7c561ff-fa14-45f6-9a90-98a7d02f8b41 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.89
+2026-05-26 10:57:03,273 | INFO | notification-service.http | request | request_id=7689298f-894c-435e-b178-8b491c09c7ae | method=GET | path=/notifications | status_code=200 | elapsed_ms=6.02
+2026-05-26 10:57:23,985 | INFO | notification-service.http | request | request_id=ca9a0ee7-e9cb-415f-b829-6d00efe71c06 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.91
+2026-05-26 10:57:24,753 | INFO | notification-service.http | request | request_id=6dc0405a-15aa-4e1c-b749-fd512ba421f7 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.82
+2026-05-26 10:59:05,969 | INFO | notification-service.http | request | request_id=10bea21a-d68a-456a-a4a6-4334a1aa7f60 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.01
+2026-05-26 10:59:22,538 | INFO | notification-service.http | request | request_id=90f08074-b2b0-4276-9624-f2e4b514f190 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.40
+2026-05-26 11:04:17,042 | INFO | notification-service.http | request | request_id=e90e7385-d735-44ab-937a-2c8404c907ee | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.74
+2026-05-26 11:04:17,611 | INFO | notification-service.http | request | request_id=3803fc6b-4f58-4dc9-9981-e15ba71f7560 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.43
+2026-05-26 11:04:36,614 | INFO | notification-service.http | request | request_id=aa5f7c03-7d87-4e04-a7a4-33cb32a667e4 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.03
+2026-05-26 11:04:37,295 | INFO | notification-service.http | request | request_id=7070fe0a-579a-4cc1-a6f2-cf3640d1bd5d | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.34
+2026-05-26 11:05:40,294 | INFO | notification-service.http | request | request_id=d5abc397-b9b7-4d55-8977-8de0c0ed4346 | method=GET | path=/notifications | status_code=200 | elapsed_ms=4.64
+2026-05-26 11:19:15,424 | INFO | notification-service.http | request | request_id=9b58a418-6219-4c77-bd0a-663a4b95fd86 | method=GET | path=/notifications | status_code=200 | elapsed_ms=13.18
+2026-05-26 11:19:16,037 | INFO | notification-service.http | request | request_id=a036c92e-e7f5-4650-8344-08f235e1e78c | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.00
+2026-05-26 11:23:29,217 | INFO | notification-service | starting notification consumer thread
+2026-05-26 11:23:29,217 | INFO | pika.adapters.utils.connection_workflow | Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2026-05-26 11:23:29,217 | INFO | pika.adapters.utils.io_services_utils | Socket connected: <socket.socket fd=1328, family=23, type=1, proto=6, laddr=('::1', 51725, 0, 0), raddr=('::1', 5672, 0, 0)>
+2026-05-26 11:23:29,223 | INFO | pika.adapters.utils.connection_workflow | Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002063E816AB0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002063E816AB0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2026-05-26 11:23:29,278 | INFO | pika.adapters.utils.connection_workflow | AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002063E816AB0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2026-05-26 11:23:29,278 | INFO | pika.adapters.utils.connection_workflow | AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002063E816AB0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2026-05-26 11:23:29,278 | INFO | pika.adapters.blocking_connection | Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002063E816AB0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2026-05-26 11:23:29,282 | INFO | pika.adapters.blocking_connection | Created channel=1
+2026-05-26 11:23:29,304 | INFO | app.messaging | notification-service consumer started and waiting for messages
+2026-05-26 11:24:23,456 | INFO | app.messaging | processed order.status_updated event for order_id=10 request_id=None
+2026-05-26 11:25:25,357 | INFO | notification-service.http | request | request_id=f7266568-a721-4065-aecb-2809b698cdfa | method=GET | path=/notifications | status_code=200 | elapsed_ms=7.40
+2026-05-26 11:25:26,134 | INFO | notification-service.http | request | request_id=a2a1d013-7284-4230-ac71-7cb68f9e7d69 | method=GET | path=/notifications | status_code=200 | elapsed_ms=5.63

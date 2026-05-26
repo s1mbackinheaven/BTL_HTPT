@@ -253,12 +253,30 @@ async def list_orders(request: Request, _: dict = Depends(require_token)):
 
 
 @app.get(
+    "/api/orders/admin",
+    summary="List all orders",
+    description="Get all orders for admin from the order-service. Requires JWT.",
+)
+async def list_all_orders(request: Request, _: dict = Depends(require_token)):
+    return await forward_request(request, settings.ORDER_SERVICE_URL, "orders/admin")
+
+
+@app.get(
     "/api/orders/{order_id}",
     summary="Get order by id",
     description="Get a single order by id from the order-service. Requires JWT.",
 )
 async def get_order(order_id: int, request: Request, _: dict = Depends(require_token)):
     return await forward_request(request, settings.ORDER_SERVICE_URL, f"orders/{order_id}")
+
+
+@app.patch(
+    "/api/orders/{order_id}/status",
+    summary="Update order status",
+    description="Update an order status in the order-service. Requires JWT.",
+)
+async def update_order_status(order_id: int, request: Request, payload: dict = Body(...), _: dict = Depends(require_token)):
+    return await forward_request(request, settings.ORDER_SERVICE_URL, f"orders/{order_id}/status", json_body=payload)
 
 
 # Notification service

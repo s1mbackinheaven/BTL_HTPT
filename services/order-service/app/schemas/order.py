@@ -19,6 +19,10 @@ class OrderCreate(BaseModel):
     order_items: list[OrderItemCreate]
 
 
+class OrderStatusUpdate(BaseModel):
+    status: str = Field(min_length=1, max_length=50)
+
+
 class OrderResponse(BaseModel):
     id: int
     user_id: int

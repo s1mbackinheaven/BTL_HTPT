@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 ORDER_EXCHANGE = "order_exchange"
 ORDER_CREATED_ROUTING_KEY = "order.created"
+ORDER_STATUS_UPDATED_ROUTING_KEY = "order.status_updated"
 QUEUE_NAME = "notification_queue"
 
 
@@ -21,6 +22,7 @@ def start_consumer(session_factory):
     channel.exchange_declare(exchange=ORDER_EXCHANGE, exchange_type="direct", durable=True)
     channel.queue_declare(queue=QUEUE_NAME, durable=True)
     channel.queue_bind(queue=QUEUE_NAME, exchange=ORDER_EXCHANGE, routing_key=ORDER_CREATED_ROUTING_KEY)
+    channel.queue_bind(queue=QUEUE_NAME, exchange=ORDER_EXCHANGE, routing_key=ORDER_STATUS_UPDATED_ROUTING_KEY)
 
     logger.info("notification-service consumer started and waiting for messages")
 
@@ -30,19 +32,31 @@ def start_consumer(session_factory):
         set_request_id(request_id)
         try:
             payload = json.loads(body.decode())
-            notification = Notification(
-                user_id=payload["user_id"],
-                type="ORDER_CREATED",
-                content=f"Order #{payload['order_id']} created successfully",
-                status="unread",
-            )
+            routing_key = method.routing_key
+            if routing_key == ORDER_CREATED_ROUTING_KEY:
+                notification = Notification(
+                    user_id=payload["user_id"],
+                    type="ORDER_CREATED",
+                    content=f"Order #{payload['order_id']} created successfully",
+                    status="unread",
+                )
+            elif routing_key == ORDER_STATUS_UPDATED_ROUTING_KEY:
+                notification = Notification(
+                    user_id=payload["user_id"],
+                    type="ORDER_STATUS_UPDATED",
+                    content=f"Order #{payload['order_id']} changed from {payload['old_status']} to {payload['new_status']}",
+                    status="unread",
+                )
+            else:
+                raise ValueError(f"Unsupported routing key: {routing_key}")
+
             db.add(notification)
             db.commit()
             ch.basic_ack(delivery_tag=method.delivery_tag)
-            logger.info("processed order.created event for order_id=%s request_id=%s", payload.get("order_id"), request_id)
+            logger.info("processed %s event for order_id=%s request_id=%s", routing_key, payload.get("order_id"), request_id)
         except Exception:
             db.rollback()
-            logger.exception("failed to process order.created message request_id=%s", request_id)
+            logger.exception("failed to process %s message request_id=%s", getattr(method, "routing_key", "unknown"), request_id)
             ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
         finally:
             db.close()
