@@ -1300,3 +1300,419 @@
 2026-05-26 11:44:51,819 | INFO | api-gateway.http | request | request_id=77b2dd43-9770-40ee-9b42-fa386ab85479 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=937.18
 2026-05-26 11:44:51,819 | INFO | api-gateway.http | request | request_id=66c3593e-0f12-4d2a-bdc3-64c205900226 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=938.38
 2026-05-26 11:44:51,819 | INFO | api-gateway.http | request | request_id=b8a49d4e-d870-43b0-94b2-f7f4d5b11bca | method=GET | path=/api/users | status_code=200 | elapsed_ms=939.41
+2026-05-26 11:45:34,493 | INFO | api-gateway.http | request | request_id=848b9f78-70c8-4382-8e0f-6999f105f870 | method=OPTIONS | path=/api/auth/me | status_code=200 | elapsed_ms=5.97
+2026-05-26 11:45:35,409 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:45:35,409 | INFO | api-gateway.http | request | request_id=063e16e0-19d2-47b8-99d3-39411d2daac4 | method=GET | path=/api/products | status_code=200 | elapsed_ms=921.36
+2026-05-26 11:45:35,417 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 11:45:35,417 | INFO | api-gateway.http | request | request_id=c6f6dd94-f392-4465-b57e-b437641e0feb | method=GET | path=/api/users | status_code=200 | elapsed_ms=929.08
+2026-05-26 11:45:35,666 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 11:45:35,666 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 11:45:35,666 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:45:35,673 | INFO | api-gateway.http | request | request_id=614266aa-e2b8-4fb4-ad69-8a95fc7207ff | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=1182.79
+2026-05-26 11:45:35,673 | INFO | api-gateway.http | request | request_id=2a3e23c3-b0a6-4115-b977-84adb56eda1e | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=1183.45
+2026-05-26 11:45:35,673 | INFO | api-gateway.http | request | request_id=0752185f-99dc-4dd6-9e9b-18fa5abd87d0 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=971.09
+2026-05-26 11:45:36,472 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:45:36,477 | INFO | api-gateway.http | request | request_id=3dc8d97b-db10-4d92-85dc-94c34dd00c1d | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=801.04
+2026-05-26 11:45:36,755 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:45:36,755 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 11:45:36,759 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 11:45:36,759 | INFO | api-gateway.http | request | request_id=a19e5494-2c90-49dd-be05-7ce3646aa845 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=911.59
+2026-05-26 11:45:36,759 | INFO | api-gateway.http | request | request_id=f9c0b192-cd9c-455b-a18e-3302e9ff3467 | method=GET | path=/api/products | status_code=200 | elapsed_ms=912.22
+2026-05-26 11:45:36,759 | INFO | api-gateway.http | request | request_id=1e19798d-aa7f-4b6a-b7c0-dd6ba0ecaff5 | method=GET | path=/api/users | status_code=200 | elapsed_ms=912.72
+2026-05-26 11:45:37,285 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:45:37,285 | INFO | api-gateway.http | request | request_id=310f3fd0-0a78-4904-9251-b7f061d53370 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=808.70
+2026-05-26 11:45:37,464 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:45:37,464 | INFO | api-gateway.http | request | request_id=382862b7-2532-4d7f-842f-1f99bf2eaf91 | method=GET | path=/api/products | status_code=200 | elapsed_ms=702.84
+2026-05-26 11:45:37,544 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 11:45:37,544 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 11:45:37,544 | INFO | api-gateway.http | request | request_id=2b86bb8c-b9f4-4470-a7ce-9a22fc700f3c | method=GET | path=/api/users | status_code=200 | elapsed_ms=782.56
+2026-05-26 11:45:37,544 | INFO | api-gateway.http | request | request_id=c12b91cc-7342-429e-b75c-a2c916bc3a3c | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=783.95
+2026-05-26 11:45:37,721 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:45:37,721 | INFO | api-gateway.http | request | request_id=b575a398-1b9d-46d0-a76c-8337fd6b0fe1 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=437.52
+2026-05-26 11:50:29,474 | INFO | httpx | HTTP Request: POST http://localhost:8001/auth/login "HTTP/1.1 200 OK"
+2026-05-26 11:50:29,474 | INFO | api-gateway.http | request | request_id=e46c9bc8-e8f1-4c6c-aadf-01a875fe3b65 | method=POST | path=/api/auth/login | status_code=200 | elapsed_ms=616.05
+2026-05-26 11:50:29,927 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 11:50:29,927 | INFO | api-gateway.http | request | request_id=d412be84-5dd3-41b3-b8a6-f5ebabf50fa3 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=444.45
+2026-05-26 11:50:30,117 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:50:30,124 | INFO | api-gateway.http | request | request_id=60f261f5-b249-4456-a2d1-479d1b91de74 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=474.21
+2026-05-26 11:50:30,360 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:50:30,360 | INFO | api-gateway.http | request | request_id=3dcbcc08-126e-43e2-88e6-5583e7fb4a6a | method=GET | path=/api/products | status_code=200 | elapsed_ms=416.70
+2026-05-26 11:50:30,787 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:50:30,787 | INFO | api-gateway.http | request | request_id=804a7d7e-d679-4826-ad93-42cacbb78c2e | method=GET | path=/api/products | status_code=200 | elapsed_ms=428.94
+2026-05-26 11:50:51,133 | INFO | api-gateway.http | request | request_id=b1d3c1d9-32b6-4016-b07f-074a1c140489 | method=OPTIONS | path=/api/orders | status_code=200 | elapsed_ms=0.33
+2026-05-26 11:50:51,133 | INFO | api-gateway.http | request | request_id=1d6b4cbd-d2da-477a-b8d3-2fc52f62d297 | method=OPTIONS | path=/api/orders | status_code=200 | elapsed_ms=0.78
+2026-05-26 11:50:51,547 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 11:50:51,547 | INFO | api-gateway.http | request | request_id=fb58a73f-0ed4-4049-baad-eb2eccbc7185 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=415.13
+2026-05-26 11:50:51,972 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 11:50:51,972 | INFO | api-gateway.http | request | request_id=8d2fc5df-3330-449c-87a4-5a8aa74747fc | method=GET | path=/api/orders | status_code=200 | elapsed_ms=421.83
+2026-05-26 11:50:54,586 | INFO | api-gateway.http | request | request_id=9490b0b2-06d7-4101-a041-ec85f163375a | method=OPTIONS | path=/api/products/4 | status_code=200 | elapsed_ms=0.30
+2026-05-26 11:50:54,587 | INFO | api-gateway.http | request | request_id=19e8eea3-da30-4a7b-90ee-deee64695649 | method=OPTIONS | path=/api/products/5 | status_code=200 | elapsed_ms=0.68
+2026-05-26 11:50:54,587 | INFO | api-gateway.http | request | request_id=f176a818-0ab5-412c-bb95-8424d6be3dcd | method=OPTIONS | path=/api/products/4 | status_code=200 | elapsed_ms=0.18
+2026-05-26 11:50:54,588 | INFO | api-gateway.http | request | request_id=2887814e-7339-41f3-af69-f5e8ae6eeadf | method=OPTIONS | path=/api/products/5 | status_code=200 | elapsed_ms=0.14
+2026-05-26 11:50:55,172 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 11:50:55,172 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 11:50:55,172 | INFO | api-gateway.http | request | request_id=2fafe8e1-1ba1-4d61-80b5-3a0d65024ba7 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=596.64
+2026-05-26 11:50:55,172 | INFO | api-gateway.http | request | request_id=8206bfae-71f1-4356-b4b3-d0f361f5a7ee | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=421.41
+2026-05-26 11:50:55,757 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 11:50:55,758 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 11:50:55,760 | INFO | api-gateway.http | request | request_id=9cb614b1-a028-4706-8a6d-934f083f0b5f | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=572.40
+2026-05-26 11:50:55,760 | INFO | api-gateway.http | request | request_id=e66dd4d8-99d7-422c-a06c-021b7a4c4209 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=573.39
+2026-05-26 11:51:05,846 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/1 "HTTP/1.1 200 OK"
+2026-05-26 11:51:05,848 | INFO | api-gateway.http | request | request_id=8dbbf72b-aa07-433f-8d2c-e9109f648ce6 | method=GET | path=/api/products/1 | status_code=200 | elapsed_ms=414.06
+2026-05-26 11:51:06,267 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/1 "HTTP/1.1 200 OK"
+2026-05-26 11:51:06,269 | INFO | api-gateway.http | request | request_id=ee527e4d-189a-4796-b4e5-d93e66547c87 | method=GET | path=/api/products/1 | status_code=200 | elapsed_ms=418.71
+2026-05-26 11:51:12,387 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:51:12,387 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 11:51:12,387 | INFO | api-gateway.http | request | request_id=670a612e-07b0-4d6c-ae7a-d495aa46c7f3 | method=GET | path=/api/products | status_code=200 | elapsed_ms=505.05
+2026-05-26 11:51:12,387 | INFO | api-gateway.http | request | request_id=69796910-29cf-455c-8f17-11fe1496d37e | method=GET | path=/api/users | status_code=200 | elapsed_ms=816.84
+2026-05-26 11:51:12,743 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:51:12,743 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 11:51:12,743 | INFO | api-gateway.http | request | request_id=184e63b4-f379-4c81-8d75-2c72dfdb6e90 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=860.75
+2026-05-26 11:51:12,749 | INFO | api-gateway.http | request | request_id=7ead5e58-70e7-4971-8426-f247503eb793 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=862.50
+2026-05-26 11:51:13,084 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:51:13,084 | INFO | api-gateway.http | request | request_id=34365648-35e6-43e6-8176-7623dcc51d9f | method=GET | path=/api/products | status_code=200 | elapsed_ms=697.45
+2026-05-26 11:51:13,084 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 11:51:13,084 | INFO | api-gateway.http | request | request_id=39d278dd-dbb7-40a2-bbd0-6dfc1f5f03cb | method=GET | path=/api/users | status_code=200 | elapsed_ms=528.25
+2026-05-26 11:51:13,148 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 11:51:13,148 | INFO | api-gateway.http | request | request_id=41885132-7b68-4da3-b558-7367bf24420a | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=406.56
+2026-05-26 11:51:13,348 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 11:51:13,348 | INFO | api-gateway.http | request | request_id=af9719a2-6b63-4ef6-bec4-cfeaa7c5d433 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=607.25
+2026-05-26 11:52:51,617 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 11:52:51,619 | INFO | api-gateway.http | request | request_id=01cfbbe5-651c-460f-ad81-f08d5020b963 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=437.64
+2026-05-26 11:52:51,855 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:52:51,855 | INFO | api-gateway.http | request | request_id=0ad33021-d81e-4e22-83f1-fe8116e22515 | method=GET | path=/api/products | status_code=200 | elapsed_ms=437.69
+2026-05-26 11:52:52,045 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 11:52:52,047 | INFO | api-gateway.http | request | request_id=49116552-9ff0-4ba3-86e7-0174412a2d5f | method=GET | path=/api/orders | status_code=200 | elapsed_ms=425.89
+2026-05-26 11:52:52,295 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 11:52:52,295 | INFO | api-gateway.http | request | request_id=288c15e7-9606-4f01-acb6-ba18207720a7 | method=GET | path=/api/products | status_code=200 | elapsed_ms=441.03
+2026-05-26 13:21:16,562 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-26 13:21:16,563 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-26 13:21:16,566 | INFO | httpx | HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+2026-05-26 13:21:16,567 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-26 13:21:16,570 | INFO | api-gateway.http | request | request_id=ac0a90b3-f143-46b1-8168-618f5fa34cdc | method=GET | path=/dashboard | status_code=200 | elapsed_ms=1029.48
+2026-05-26 13:21:16,756 | INFO | api-gateway.http | request | request_id=dd02ce2b-172f-490f-81ff-8a9d621ed03d | method=GET | path=/favicon.ico | status_code=404 | elapsed_ms=3.82
+2026-05-26 21:23:23,483 | INFO | api-gateway.http | request | request_id=90350934-68f5-4491-9eb6-b07a8bbbe716 | method=GET | path=/ | status_code=404 | elapsed_ms=0.38
+2026-05-26 21:23:23,697 | INFO | api-gateway.http | request | request_id=5b2597b5-ebb3-4411-82ca-937de40381b7 | method=GET | path=/favicon.ico | status_code=404 | elapsed_ms=0.38
+2026-05-26 21:23:27,071 | INFO | api-gateway.http | request | request_id=aeceddb4-f89b-408b-9eb0-8158d983eb1d | method=GET | path=/docs | status_code=200 | elapsed_ms=0.24
+2026-05-26 21:23:27,153 | INFO | api-gateway.http | request | request_id=ca325d70-433b-4542-aa8e-ced33d882455 | method=GET | path=/openapi.json | status_code=200 | elapsed_ms=6.65
+2026-05-26 21:24:15,391 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:15,392 | INFO | httpx | HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:15,393 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:15,395 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:15,403 | INFO | api-gateway.http | request | request_id=f1d6092c-d7de-44bb-b6b6-9fba583b696d | method=GET | path=/dashboard | status_code=200 | elapsed_ms=1184.31
+2026-05-26 21:24:47,393 | INFO | httpx | HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:47,394 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:47,396 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:47,396 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:47,399 | INFO | api-gateway.http | request | request_id=a4f43420-7b45-4c66-a818-0a8fdbd3bd5c | method=GET | path=/dashboard | status_code=200 | elapsed_ms=985.69
+2026-05-26 21:24:57,043 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:57,043 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:57,044 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-26 21:24:59,091 | INFO | api-gateway.http | request | request_id=51c431e0-9f7a-44a0-9cec-ec13512eff19 | method=GET | path=/dashboard | status_code=200 | elapsed_ms=3000.43
+2026-05-26 21:25:13,150 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-26 21:25:13,150 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-26 21:25:13,152 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-26 21:25:13,155 | INFO | httpx | HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+2026-05-26 21:25:13,156 | INFO | api-gateway.http | request | request_id=4a901f92-08aa-4f23-a601-75ccf9558610 | method=GET | path=/dashboard | status_code=200 | elapsed_ms=997.95
+2026-05-26 21:25:26,874 | INFO | httpx | HTTP Request: POST http://localhost:8001/auth/login "HTTP/1.1 200 OK"
+2026-05-26 21:25:26,876 | INFO | api-gateway.http | request | request_id=177deabe-f82b-4f0c-b806-8af81852ec67 | method=POST | path=/api/auth/login | status_code=200 | elapsed_ms=728.68
+2026-05-26 21:25:42,345 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:25:42,347 | INFO | api-gateway.http | request | request_id=02710a4a-d528-473e-95bf-32a30b37441b | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=480.69
+2026-05-26 21:30:15,738 | INFO | httpx | HTTP Request: POST http://localhost:8003/orders "HTTP/1.1 201 Created"
+2026-05-26 21:30:15,739 | INFO | api-gateway.http | request | request_id=e6e991c9-8b81-4a57-a110-d3f94e2d46c0 | method=POST | path=/api/orders | status_code=201 | elapsed_ms=2669.27
+2026-05-26 21:31:02,217 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:31:02,218 | INFO | api-gateway.http | request | request_id=dd657c41-c25c-4b35-92d4-6b508b10ccdd | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=449.68
+2026-05-26 21:32:14,002 | INFO | api-gateway.http | request | request_id=192c3f75-7d24-46f5-9676-7df8891bd977 | method=OPTIONS | path=/api/auth/me | status_code=200 | elapsed_ms=3.18
+2026-05-26 21:32:14,003 | INFO | api-gateway.http | request | request_id=4cb8682e-15fc-4820-9d17-8e3defa68544 | method=OPTIONS | path=/api/notifications | status_code=200 | elapsed_ms=3.77
+2026-05-26 21:32:14,004 | INFO | api-gateway.http | request | request_id=72ef64c6-1792-433b-a3e3-ee4b428e453d | method=OPTIONS | path=/api/notifications | status_code=200 | elapsed_ms=1.38
+2026-05-26 21:32:14,004 | INFO | api-gateway.http | request | request_id=563d03d6-f3a1-4c9b-89bb-53ffa9770673 | method=OPTIONS | path=/api/auth/me | status_code=200 | elapsed_ms=1.64
+2026-05-26 21:32:14,627 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:32:14,627 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:32:14,629 | INFO | api-gateway.http | request | request_id=8ad6cdd4-ce3b-4a2c-9622-ec1b79ee176e | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=619.43
+2026-05-26 21:32:14,630 | INFO | api-gateway.http | request | request_id=6e2c8fda-29f6-4a34-8293-b8e0bb65f8aa | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=619.24
+2026-05-26 21:32:15,060 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:32:15,061 | INFO | api-gateway.http | request | request_id=f95553a4-2aba-4abf-ac71-5e6f0607a36f | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=430.87
+2026-05-26 21:32:15,261 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:32:15,262 | INFO | api-gateway.http | request | request_id=568034f3-0797-41ad-9966-ea5c0d16a7eb | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=630.64
+2026-05-26 21:32:26,370 | INFO | httpx | HTTP Request: POST http://localhost:8001/auth/login "HTTP/1.1 200 OK"
+2026-05-26 21:32:26,372 | INFO | api-gateway.http | request | request_id=d04b34e5-b116-4779-abd4-d377ea6affca | method=POST | path=/api/auth/login | status_code=200 | elapsed_ms=616.20
+2026-05-26 21:32:26,853 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:32:26,854 | INFO | api-gateway.http | request | request_id=a937e37b-0d98-4d43-8d1d-df20c5eeb766 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=479.74
+2026-05-26 21:32:26,867 | INFO | api-gateway.http | request | request_id=a7f97648-a8b6-4b5b-b188-19af4f710600 | method=OPTIONS | path=/api/products | status_code=200 | elapsed_ms=0.19
+2026-05-26 21:32:26,869 | INFO | api-gateway.http | request | request_id=3168b727-94bf-4a0b-89c1-a48a1c8e5d42 | method=OPTIONS | path=/api/products | status_code=200 | elapsed_ms=0.16
+2026-05-26 21:32:27,123 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:32:27,124 | INFO | api-gateway.http | request | request_id=a9a9ccf0-586c-4bde-96a1-1be4731b8b74 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=444.58
+2026-05-26 21:32:27,324 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:27,325 | INFO | api-gateway.http | request | request_id=73beed7f-0ca6-451a-83f6-b870aab1ab80 | method=GET | path=/api/products | status_code=200 | elapsed_ms=452.46
+2026-05-26 21:32:27,761 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:27,762 | INFO | api-gateway.http | request | request_id=bf3b1a43-3119-4cac-8ab6-9a9344bacf51 | method=GET | path=/api/products | status_code=200 | elapsed_ms=435.43
+2026-05-26 21:32:31,960 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:31,965 | INFO | api-gateway.http | request | request_id=7af6acb3-6ac7-4d15-b530-eb74a213a7e8 | method=GET | path=/api/products | status_code=200 | elapsed_ms=470.79
+2026-05-26 21:32:32,423 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:32,425 | INFO | api-gateway.http | request | request_id=75807873-a92c-4664-879f-81f4c9e490bf | method=GET | path=/api/products | status_code=200 | elapsed_ms=458.69
+2026-05-26 21:32:36,187 | INFO | api-gateway.http | request | request_id=d3bc3194-89ec-4d3e-9b22-925acf83fdb1 | method=OPTIONS | path=/api/orders | status_code=200 | elapsed_ms=0.18
+2026-05-26 21:32:36,188 | INFO | api-gateway.http | request | request_id=d61b7af2-47ff-4773-9f91-7b335354a135 | method=OPTIONS | path=/api/orders | status_code=200 | elapsed_ms=0.24
+2026-05-26 21:32:36,661 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:32:36,662 | INFO | api-gateway.http | request | request_id=f215d9b9-4ec9-419b-a4a5-d44388b3a337 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=470.33
+2026-05-26 21:32:37,107 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:32:37,109 | INFO | api-gateway.http | request | request_id=ab34f2c2-4330-42ca-abec-f55477be3c33 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=445.50
+2026-05-26 21:32:38,555 | INFO | api-gateway.http | request | request_id=c674b4c8-7d6c-46ce-bd5b-1338c925f3b9 | method=OPTIONS | path=/api/products/1 | status_code=200 | elapsed_ms=0.37
+2026-05-26 21:32:38,556 | INFO | api-gateway.http | request | request_id=78503c20-f517-41fe-9ec8-ea9726dc4ac6 | method=OPTIONS | path=/api/products/1 | status_code=200 | elapsed_ms=0.76
+2026-05-26 21:32:39,013 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/1 "HTTP/1.1 200 OK"
+2026-05-26 21:32:39,015 | INFO | api-gateway.http | request | request_id=04d29a3b-1912-4fe3-a63f-c13fd3d7e377 | method=GET | path=/api/products/1 | status_code=200 | elapsed_ms=456.14
+2026-05-26 21:32:39,445 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/1 "HTTP/1.1 200 OK"
+2026-05-26 21:32:39,446 | INFO | api-gateway.http | request | request_id=b9108df7-f2f7-4d42-8e85-d39c0750685b | method=GET | path=/api/products/1 | status_code=200 | elapsed_ms=429.77
+2026-05-26 21:32:42,271 | INFO | api-gateway.http | request | request_id=d93092b6-f4f5-439c-a461-3a968ecc7b81 | method=OPTIONS | path=/api/products/4 | status_code=200 | elapsed_ms=0.32
+2026-05-26 21:32:42,271 | INFO | api-gateway.http | request | request_id=ba1d4b6f-4127-4a65-8e14-ef2ef024ea20 | method=OPTIONS | path=/api/products/5 | status_code=200 | elapsed_ms=0.74
+2026-05-26 21:32:42,276 | INFO | api-gateway.http | request | request_id=f678a57d-7196-45bb-9169-60fc01c97f37 | method=OPTIONS | path=/api/products/4 | status_code=200 | elapsed_ms=0.62
+2026-05-26 21:32:42,276 | INFO | api-gateway.http | request | request_id=fcf2e350-c4e5-4c96-811e-708fc5505781 | method=OPTIONS | path=/api/products/5 | status_code=200 | elapsed_ms=0.72
+2026-05-26 21:32:42,702 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:32:42,704 | INFO | api-gateway.http | request | request_id=6f233f1e-4f30-4828-aeb1-48dac402d6d3 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=427.00
+2026-05-26 21:32:42,884 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:32:42,886 | INFO | api-gateway.http | request | request_id=9dd72cf3-53f9-435d-b412-4bcda81fa2c6 | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=437.75
+2026-05-26 21:32:43,154 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:32:43,155 | INFO | api-gateway.http | request | request_id=e159312b-deae-4f8c-8678-37ec2d606265 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=450.05
+2026-05-26 21:32:43,313 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:32:43,314 | INFO | api-gateway.http | request | request_id=ff3e305e-64ed-4067-be39-914604b5d1ad | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=427.09
+2026-05-26 21:32:46,316 | INFO | api-gateway.http | request | request_id=b439b81f-b97e-411e-ae89-67cae6205ddf | method=OPTIONS | path=/api/users | status_code=200 | elapsed_ms=5.99
+2026-05-26 21:32:46,317 | INFO | api-gateway.http | request | request_id=19d3ff93-d967-46aa-9c76-a05a2d8db99f | method=OPTIONS | path=/api/orders/admin | status_code=200 | elapsed_ms=6.78
+2026-05-26 21:32:46,319 | INFO | api-gateway.http | request | request_id=69a4fc1e-4365-45a3-a924-a8ab90349b7d | method=OPTIONS | path=/api/users | status_code=200 | elapsed_ms=2.63
+2026-05-26 21:32:46,496 | INFO | api-gateway.http | request | request_id=cbf89b54-5a19-40d3-b26f-19575dc4c823 | method=OPTIONS | path=/api/orders/admin | status_code=200 | elapsed_ms=0.64
+2026-05-26 21:32:47,018 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,020 | INFO | api-gateway.http | request | request_id=28de147d-bbeb-4c6e-b5dc-712aac0c8ab5 | method=GET | path=/api/products | status_code=200 | elapsed_ms=708.06
+2026-05-26 21:32:47,020 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,023 | INFO | api-gateway.http | request | request_id=7c17619a-00af-44a4-90cc-28585c71bd03 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=710.52
+2026-05-26 21:32:47,378 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,380 | INFO | api-gateway.http | request | request_id=edf0c7fd-3179-4c8d-8c63-1f676002f65c | method=GET | path=/api/users | status_code=200 | elapsed_ms=884.25
+2026-05-26 21:32:47,560 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,561 | INFO | api-gateway.http | request | request_id=895bac0a-ef63-4566-8e1e-c9a7ad49ba8c | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=891.77
+2026-05-26 21:32:47,734 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,736 | INFO | api-gateway.http | request | request_id=d09dcc25-c6c1-4138-8ed4-ee5b2a575a4b | method=GET | path=/api/products | status_code=200 | elapsed_ms=713.73
+2026-05-26 21:32:47,742 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,743 | INFO | api-gateway.http | request | request_id=adc40ff1-edd5-45eb-977e-e15751bc0f48 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=543.71
+2026-05-26 21:32:47,820 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:32:47,823 | INFO | api-gateway.http | request | request_id=6b2fa73c-4007-48ed-bb57-fbf949744f66 | method=GET | path=/api/users | status_code=200 | elapsed_ms=439.32
+2026-05-26 21:32:48,019 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:32:48,021 | INFO | api-gateway.http | request | request_id=7940c898-71c8-4755-9061-4b8561c212be | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=457.43
+2026-05-26 21:33:00,350 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:00,352 | INFO | api-gateway.http | request | request_id=02f60f56-3b54-4aae-9cc4-2bf8902774c8 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=453.61
+2026-05-26 21:33:00,802 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:00,804 | INFO | api-gateway.http | request | request_id=a87fac25-5e40-47be-b72a-84f07dc163b7 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=449.47
+2026-05-26 21:33:07,907 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:33:07,908 | INFO | api-gateway.http | request | request_id=ac17289d-250a-4568-9488-70bbe6808205 | method=GET | path=/api/products | status_code=200 | elapsed_ms=468.24
+2026-05-26 21:33:08,370 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:33:08,371 | INFO | api-gateway.http | request | request_id=73d55fcd-f6d3-49fe-917d-0d481c3fab03 | method=GET | path=/api/products | status_code=200 | elapsed_ms=461.25
+2026-05-26 21:33:08,980 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:33:08,981 | INFO | api-gateway.http | request | request_id=e4bb4829-ef93-43ac-ba9a-0fcf533bbcab | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=450.64
+2026-05-26 21:33:09,418 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:33:09,419 | INFO | api-gateway.http | request | request_id=7b6015eb-c80e-4d5a-8507-8bf05df9cc9a | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=436.34
+2026-05-26 21:33:11,385 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:33:11,386 | INFO | api-gateway.http | request | request_id=2157d86b-a425-4a2d-a9b9-16c0ed4cdb62 | method=GET | path=/api/products | status_code=200 | elapsed_ms=424.45
+2026-05-26 21:33:11,836 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:33:11,837 | INFO | api-gateway.http | request | request_id=31970caf-150e-47e6-aa89-5895359d92ac | method=GET | path=/api/products | status_code=200 | elapsed_ms=449.63
+2026-05-26 21:33:12,537 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:33:12,538 | INFO | api-gateway.http | request | request_id=504c930b-2263-45bf-b0c5-194390a10052 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=467.87
+2026-05-26 21:33:12,978 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:33:12,981 | INFO | api-gateway.http | request | request_id=a53671dd-3567-4b9d-9fe8-323c24937ff6 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=441.13
+2026-05-26 21:33:19,864 | INFO | api-gateway.http | request | request_id=c27d2682-5a37-4ed3-935f-8c4acf0835fd | method=OPTIONS | path=/api/orders | status_code=200 | elapsed_ms=0.21
+2026-05-26 21:33:24,527 | INFO | httpx | HTTP Request: POST http://localhost:8003/orders "HTTP/1.1 201 Created"
+2026-05-26 21:33:24,528 | INFO | api-gateway.http | request | request_id=c65dcf51-1984-41a3-8cd0-5a4a25ca3486 | method=POST | path=/api/orders | status_code=201 | elapsed_ms=4662.99
+2026-05-26 21:33:25,176 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:25,178 | INFO | api-gateway.http | request | request_id=2226d19c-27d4-4b60-b7e4-9df6165984b7 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=630.02
+2026-05-26 21:33:25,672 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:25,674 | INFO | api-gateway.http | request | request_id=98cad07d-4023-4c51-a00a-061c3bb6d98d | method=GET | path=/api/orders | status_code=200 | elapsed_ms=688.88
+2026-05-26 21:33:25,931 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:33:25,932 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:33:25,934 | INFO | api-gateway.http | request | request_id=a7674e30-a255-4568-8fe0-92177876fdbb | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=649.99
+2026-05-26 21:33:25,935 | INFO | api-gateway.http | request | request_id=70fedd2b-2d46-41eb-9b4f-64541f8a8ad9 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=650.22
+2026-05-26 21:33:26,293 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:26,294 | INFO | api-gateway.http | request | request_id=8be846d9-91c2-46cf-87fd-1e0b3d4ebf39 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=619.13
+2026-05-26 21:33:26,484 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:33:26,486 | INFO | api-gateway.http | request | request_id=06b5a310-b9aa-4f58-9396-ad76476d168a | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=549.50
+2026-05-26 21:33:26,552 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:33:26,553 | INFO | api-gateway.http | request | request_id=9383c85f-31cb-42dd-b85d-1623d9539c04 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=615.32
+2026-05-26 21:33:26,754 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:26,755 | INFO | api-gateway.http | request | request_id=24422a30-937c-493f-a755-64afa7d701b9 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=459.36
+2026-05-26 21:33:27,190 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:27,191 | INFO | api-gateway.http | request | request_id=9c708dca-70f1-4c7b-8ccf-467346e4d93c | method=GET | path=/api/orders | status_code=200 | elapsed_ms=434.68
+2026-05-26 21:33:27,640 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:27,641 | INFO | api-gateway.http | request | request_id=749a1638-3a54-447a-8d4a-d65f80632348 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=449.47
+2026-05-26 21:33:28,065 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:28,066 | INFO | api-gateway.http | request | request_id=00a9bbab-e339-4c8a-9775-382899013c44 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=423.60
+2026-05-26 21:33:36,352 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:36,353 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:33:36,355 | INFO | api-gateway.http | request | request_id=bbc8565b-dda7-44a2-b2c6-f54f69e36341 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=629.13
+2026-05-26 21:33:36,355 | INFO | api-gateway.http | request | request_id=5b8bdd9f-468b-4c1f-a033-17bf15ed184c | method=GET | path=/api/orders | status_code=200 | elapsed_ms=630.44
+2026-05-26 21:33:36,701 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:33:36,703 | INFO | api-gateway.http | request | request_id=2c374205-3fc4-4290-b72d-b2e75c83f37a | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=609.76
+2026-05-26 21:33:36,882 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:33:36,883 | INFO | api-gateway.http | request | request_id=0e634307-fc97-403b-b5e3-4ca6e6fb3613 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=526.95
+2026-05-26 21:33:36,960 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:36,961 | INFO | api-gateway.http | request | request_id=a54ffb25-0949-43a6-ab67-cb637c35d05a | method=GET | path=/api/orders | status_code=200 | elapsed_ms=603.36
+2026-05-26 21:33:37,136 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:33:37,138 | INFO | api-gateway.http | request | request_id=c8ed8e3e-e41d-48de-9b2f-b49bc8c5d6bd | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=433.37
+2026-05-26 21:33:37,406 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:37,408 | INFO | api-gateway.http | request | request_id=15b65486-76de-4823-a621-d7efe8e1b74a | method=GET | path=/api/orders | status_code=200 | elapsed_ms=446.05
+2026-05-26 21:33:37,854 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:37,855 | INFO | api-gateway.http | request | request_id=0adf109f-9b4d-4203-9863-c2197c19ae3f | method=GET | path=/api/orders | status_code=200 | elapsed_ms=445.59
+2026-05-26 21:33:38,302 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:38,303 | INFO | api-gateway.http | request | request_id=fd3e10cd-ffee-4149-ba66-86a208a36fa0 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=447.86
+2026-05-26 21:33:38,739 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:33:38,741 | INFO | api-gateway.http | request | request_id=88b9b144-e52b-4368-9499-6dfd0b462a78 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=436.48
+2026-05-26 21:33:41,724 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:33:41,726 | INFO | api-gateway.http | request | request_id=b5fc4bbf-167b-4103-a56c-a758fddf1f4a | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=606.68
+2026-05-26 21:33:41,901 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:33:41,903 | INFO | api-gateway.http | request | request_id=6d5182b7-6aaf-4cc8-9e7e-a5edb2c47e9e | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=783.42
+2026-05-26 21:33:42,173 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:33:42,175 | INFO | api-gateway.http | request | request_id=77fbd9cc-b001-489c-907e-944c65464efd | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=447.84
+2026-05-26 21:33:42,328 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:33:42,329 | INFO | api-gateway.http | request | request_id=5f1ad2ae-ed99-4588-8f8f-0f39d954dc6a | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=425.50
+2026-05-26 21:34:20,411 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:34:20,412 | INFO | api-gateway.http | request | request_id=9ec86ea9-b609-449e-8d4b-9a06286a3d9e | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=488.50
+2026-05-26 21:34:20,667 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:34:20,668 | INFO | api-gateway.http | request | request_id=b6cb001b-4221-4f36-9f82-f55f642ebaf4 | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=441.16
+2026-05-26 21:34:20,849 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:34:20,850 | INFO | api-gateway.http | request | request_id=aa1e5975-a2a5-47ab-8f9f-14f6e3f5fa54 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=435.83
+2026-05-26 21:34:21,099 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:34:21,100 | INFO | api-gateway.http | request | request_id=4f77cbfa-f900-4958-bb1f-2d2620335cb3 | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=430.48
+2026-05-26 21:34:27,500 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:34:27,503 | INFO | api-gateway.http | request | request_id=81817308-e30a-42ca-a468-ce31d691bc21 | method=GET | path=/api/products | status_code=200 | elapsed_ms=470.93
+2026-05-26 21:34:28,018 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:34:28,019 | INFO | api-gateway.http | request | request_id=586da4db-691b-47ed-93ea-a09cc69497ff | method=GET | path=/api/products | status_code=200 | elapsed_ms=514.09
+2026-05-26 21:35:03,861 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:03,863 | INFO | api-gateway.http | request | request_id=1b42f986-069f-4699-a625-5cc39b7d3f68 | method=GET | path=/api/products | status_code=200 | elapsed_ms=696.54
+2026-05-26 21:35:04,123 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,123 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,125 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,126 | INFO | api-gateway.http | request | request_id=3914b3b8-f3e4-463f-9125-4ce1eebc268d | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=958.99
+2026-05-26 21:35:04,126 | INFO | api-gateway.http | request | request_id=2c170afb-fed7-4990-b6dc-f84908234159 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=959.80
+2026-05-26 21:35:04,127 | INFO | api-gateway.http | request | request_id=df7a7951-98e0-486d-a983-4bb65a822d73 | method=GET | path=/api/users | status_code=200 | elapsed_ms=960.93
+2026-05-26 21:35:04,648 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,650 | INFO | api-gateway.http | request | request_id=846d5d48-707a-4fce-b9fd-fd4397dc8d40 | method=GET | path=/api/products | status_code=200 | elapsed_ms=785.55
+2026-05-26 21:35:04,912 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,912 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,915 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:04,916 | INFO | api-gateway.http | request | request_id=c9e4c926-5f12-447b-8af0-6bf23a4a80a9 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=787.57
+2026-05-26 21:35:04,916 | INFO | api-gateway.http | request | request_id=d8f36c7b-306a-41bd-9e79-453c4c5bd086 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=787.74
+2026-05-26 21:35:04,917 | INFO | api-gateway.http | request | request_id=9a54d452-f5f0-44cc-906a-75b85ccf5f5a | method=GET | path=/api/users | status_code=200 | elapsed_ms=787.92
+2026-05-26 21:35:16,764 | INFO | api-gateway.http | request | request_id=873b411a-434d-408e-ad93-3519ba01a688 | method=OPTIONS | path=/api/orders/12/status | status_code=200 | elapsed_ms=0.19
+2026-05-26 21:35:17,309 | INFO | httpx | HTTP Request: PATCH http://localhost:8003/orders/12/status "HTTP/1.1 200 OK"
+2026-05-26 21:35:17,311 | INFO | api-gateway.http | request | request_id=5ebd8013-e18a-4ace-870b-da757f61b8a8 | method=PATCH | path=/api/orders/12/status | status_code=200 | elapsed_ms=544.10
+2026-05-26 21:35:17,993 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:17,994 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:17,995 | INFO | api-gateway.http | request | request_id=33dbe121-d04d-4b35-bc11-fadf7714fb39 | method=GET | path=/api/products | status_code=200 | elapsed_ms=680.33
+2026-05-26 21:35:17,996 | INFO | api-gateway.http | request | request_id=5bcb846d-9318-4680-b43f-e7fda04b6ab7 | method=GET | path=/api/users | status_code=200 | elapsed_ms=681.24
+2026-05-26 21:35:18,342 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,343 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,345 | INFO | api-gateway.http | request | request_id=b73d02f8-d875-4e2b-8af4-1117a5125765 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=693.15
+2026-05-26 21:35:18,345 | INFO | api-gateway.http | request | request_id=bc00a9c1-8176-4ad1-8e87-c06b43a4d2fc | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=693.68
+2026-05-26 21:35:18,693 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,694 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,695 | INFO | api-gateway.http | request | request_id=86ba0f30-5775-4e2a-99c0-9e272f66bfa9 | method=GET | path=/api/products | status_code=200 | elapsed_ms=697.77
+2026-05-26 21:35:18,696 | INFO | api-gateway.http | request | request_id=89a4e770-af75-41df-8b7e-65e35ba8ecc0 | method=GET | path=/api/users | status_code=200 | elapsed_ms=698.40
+2026-05-26 21:35:18,945 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,945 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:18,947 | INFO | api-gateway.http | request | request_id=3a7fa991-bf90-46dc-8d52-235719b3ddb5 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=600.32
+2026-05-26 21:35:18,947 | INFO | api-gateway.http | request | request_id=e01d5470-eb7a-4960-a95d-9823c2b2f415 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=601.39
+2026-05-26 21:35:20,645 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:35:20,648 | INFO | api-gateway.http | request | request_id=fa9ab16d-0e25-479b-a8ce-2f0d8b667db4 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=492.37
+2026-05-26 21:35:21,123 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:35:21,125 | INFO | api-gateway.http | request | request_id=8eb317ac-ab74-4a3d-bc68-aa21830d62c4 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=474.82
+2026-05-26 21:35:21,319 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:21,320 | INFO | api-gateway.http | request | request_id=0a091c1b-6072-4872-ad32-9945a4152b6e | method=GET | path=/api/products | status_code=200 | elapsed_ms=469.40
+2026-05-26 21:35:21,573 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:35:21,575 | INFO | api-gateway.http | request | request_id=bfce7db0-2d33-46e0-9585-34f933bada7e | method=GET | path=/api/orders | status_code=200 | elapsed_ms=448.92
+2026-05-26 21:35:21,773 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:21,774 | INFO | api-gateway.http | request | request_id=1683ddd0-9dcb-492d-97e3-c6f5c5c5ce8e | method=GET | path=/api/products | status_code=200 | elapsed_ms=451.57
+2026-05-26 21:35:42,513 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:42,515 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:42,515 | INFO | api-gateway.http | request | request_id=bfe48b7b-9da4-4fd6-938b-7751eda124ba | method=GET | path=/api/products | status_code=200 | elapsed_ms=534.12
+2026-05-26 21:35:42,516 | INFO | api-gateway.http | request | request_id=27d21ab2-beb3-46af-9ee5-d5ecb763f55b | method=GET | path=/api/users | status_code=200 | elapsed_ms=843.57
+2026-05-26 21:35:42,890 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:42,891 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:42,893 | INFO | api-gateway.http | request | request_id=7a633737-5053-4492-bb5b-c0a6f2793cdf | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=907.55
+2026-05-26 21:35:42,893 | INFO | api-gateway.http | request | request_id=2c3fbcc3-9f3d-407d-ab43-d3234ffebba7 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=912.38
+2026-05-26 21:35:43,249 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:35:43,251 | INFO | api-gateway.http | request | request_id=ef241d7a-d0e1-4a2d-aa0d-0d07628eefb5 | method=GET | path=/api/products | status_code=200 | elapsed_ms=733.67
+2026-05-26 21:35:43,253 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:35:43,254 | INFO | api-gateway.http | request | request_id=81c72f3a-8a0d-4a14-bab1-6f32352c368a | method=GET | path=/api/users | status_code=200 | elapsed_ms=551.67
+2026-05-26 21:35:43,336 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:35:43,338 | INFO | api-gateway.http | request | request_id=11ff50fb-6901-4dcb-baaa-952c13d1b596 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=443.19
+2026-05-26 21:35:43,495 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:35:43,496 | INFO | api-gateway.http | request | request_id=228b75d9-aebe-4b61-ba1d-e2e7b79a4eae | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=599.89
+2026-05-26 21:35:57,915 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:35:57,916 | INFO | api-gateway.http | request | request_id=7eb8f013-ee27-429c-a7f6-ed02f033d2bb | method=GET | path=/api/orders | status_code=200 | elapsed_ms=445.11
+2026-05-26 21:35:58,354 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:35:58,356 | INFO | api-gateway.http | request | request_id=eb6c03da-3a01-44ee-a93d-d23d96e59e4a | method=GET | path=/api/orders | status_code=200 | elapsed_ms=436.97
+2026-05-26 21:36:00,544 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:36:00,544 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:36:00,546 | INFO | api-gateway.http | request | request_id=51853f8c-b5eb-4777-b479-a86377c7f1a8 | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=670.86
+2026-05-26 21:36:00,546 | INFO | api-gateway.http | request | request_id=ebffab26-cdb7-458e-a929-138af1fd27d2 | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=670.70
+2026-05-26 21:36:00,989 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/5 "HTTP/1.1 200 OK"
+2026-05-26 21:36:00,991 | INFO | api-gateway.http | request | request_id=3341e1c5-87aa-45ad-8ac7-de3da8daf453 | method=GET | path=/api/products/5 | status_code=200 | elapsed_ms=442.42
+2026-05-26 21:36:01,172 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/4 "HTTP/1.1 200 OK"
+2026-05-26 21:36:01,173 | INFO | api-gateway.http | request | request_id=530d4013-0c29-4b76-a12b-f97aef32ed4d | method=GET | path=/api/products/4 | status_code=200 | elapsed_ms=450.50
+2026-05-26 21:36:04,740 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:36:04,743 | INFO | api-gateway.http | request | request_id=b6c2219e-f54d-4d15-a1eb-0fb89d76039e | method=GET | path=/api/products | status_code=200 | elapsed_ms=700.53
+2026-05-26 21:36:05,001 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,001 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,003 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,005 | INFO | api-gateway.http | request | request_id=5af34406-af12-4739-8dcd-05c40b893253 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=962.72
+2026-05-26 21:36:05,005 | INFO | api-gateway.http | request | request_id=180c56dc-732f-47c0-9cb6-20bd58f7c949 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=963.27
+2026-05-26 21:36:05,006 | INFO | api-gateway.http | request | request_id=988317a2-aa3c-4292-85c0-d79575a1cd09 | method=GET | path=/api/users | status_code=200 | elapsed_ms=965.01
+2026-05-26 21:36:05,539 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,541 | INFO | api-gateway.http | request | request_id=83ee1e44-07c2-4b94-a327-da86608aecae | method=GET | path=/api/products | status_code=200 | elapsed_ms=796.02
+2026-05-26 21:36:05,548 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,550 | INFO | api-gateway.http | request | request_id=9d3d2e26-7595-43e4-9708-27a949d19468 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=542.95
+2026-05-26 21:36:05,807 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,809 | INFO | api-gateway.http | request | request_id=53b3a3b3-e2e4-43e2-9a95-736047dfeb86 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=613.58
+2026-05-26 21:36:05,809 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:36:05,811 | INFO | api-gateway.http | request | request_id=768680a3-df02-4450-9b52-7402542dfc82 | method=GET | path=/api/users | status_code=200 | elapsed_ms=615.89
+2026-05-26 21:36:14,787 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:36:14,788 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:14,790 | INFO | api-gateway.http | request | request_id=3bdc85f5-3edb-4975-bd46-10f19055468b | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=696.50
+2026-05-26 21:36:14,790 | INFO | api-gateway.http | request | request_id=b54d79c7-15ae-4db7-93ff-bba27fbf039a | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=697.46
+2026-05-26 21:36:15,234 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:15,235 | INFO | api-gateway.http | request | request_id=7cffbacb-7f3a-45f6-bba4-c895b1f3136d | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=442.54
+2026-05-26 21:36:15,418 | INFO | httpx | HTTP Request: GET http://localhost:8001/auth/me "HTTP/1.1 200 OK"
+2026-05-26 21:36:15,421 | INFO | api-gateway.http | request | request_id=7e2e9e90-7830-4fb0-a26d-a92f6acebbb7 | method=GET | path=/api/auth/me | status_code=200 | elapsed_ms=627.12
+2026-05-26 21:36:21,455 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:36:21,457 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:36:21,457 | INFO | api-gateway.http | request | request_id=b5aa4728-11b2-4a85-9491-013ff46c2d62 | method=GET | path=/api/products | status_code=200 | elapsed_ms=537.22
+2026-05-26 21:36:21,460 | INFO | api-gateway.http | request | request_id=2643daed-4a0a-41db-8ff7-e1b226404045 | method=GET | path=/api/users | status_code=200 | elapsed_ms=719.60
+2026-05-26 21:36:21,814 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:36:21,814 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:21,816 | INFO | api-gateway.http | request | request_id=3225ffce-4dbd-4fed-acc9-6a09f47c3d0a | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=718.19
+2026-05-26 21:36:21,816 | INFO | api-gateway.http | request | request_id=389aebe1-c829-4651-976f-2d3fcc7dbde6 | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=718.62
+2026-05-26 21:36:22,195 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:36:22,196 | INFO | api-gateway.http | request | request_id=28ce2184-57d9-4db3-8f4d-ef68340f742b | method=GET | path=/api/products | status_code=200 | elapsed_ms=736.14
+2026-05-26 21:36:22,197 | INFO | httpx | HTTP Request: GET http://localhost:8001/users "HTTP/1.1 200 OK"
+2026-05-26 21:36:22,198 | INFO | api-gateway.http | request | request_id=687ba5d4-2db9-4308-8712-bc54a1fb6fcc | method=GET | path=/api/users | status_code=200 | elapsed_ms=567.18
+2026-05-26 21:36:22,446 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders/admin "HTTP/1.1 200 OK"
+2026-05-26 21:36:22,447 | INFO | httpx | HTTP Request: GET http://localhost:8004/notifications "HTTP/1.1 200 OK"
+2026-05-26 21:36:22,449 | INFO | api-gateway.http | request | request_id=ff559808-45a3-4cb3-9686-89efe66b5731 | method=GET | path=/api/notifications | status_code=200 | elapsed_ms=631.41
+2026-05-26 21:36:22,449 | INFO | api-gateway.http | request | request_id=2417e063-0ebc-45d4-9fe2-617a48b1509a | method=GET | path=/api/orders/admin | status_code=200 | elapsed_ms=631.45
+2026-05-26 21:43:09,069 | INFO | api-gateway.http | request | request_id=094a46b5-4b07-47d5-97d3-dff978be04aa | method=OPTIONS | path=/api/products | status_code=200 | elapsed_ms=0.31
+2026-05-26 21:43:09,070 | INFO | api-gateway.http | request | request_id=93eb7fd8-8944-4b52-ba22-92dc05212d80 | method=OPTIONS | path=/api/products | status_code=200 | elapsed_ms=0.14
+2026-05-26 21:43:09,506 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:43:09,508 | INFO | api-gateway.http | request | request_id=0df1b75e-f335-47bf-93f8-793ee689579b | method=GET | path=/api/products | status_code=200 | elapsed_ms=436.28
+2026-05-26 21:43:09,924 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:43:09,925 | INFO | api-gateway.http | request | request_id=d4090f7b-fa39-4b37-8e35-325e77a200d4 | method=GET | path=/api/products | status_code=200 | elapsed_ms=416.56
+2026-05-26 21:43:11,422 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:43:11,423 | INFO | api-gateway.http | request | request_id=67d15e1a-1168-4221-bc4f-7dd3e57eb64f | method=GET | path=/api/orders | status_code=200 | elapsed_ms=456.41
+2026-05-26 21:43:11,859 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:43:11,860 | INFO | api-gateway.http | request | request_id=c9664b4b-111c-4bfb-be2c-c36cd8f095b9 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=436.05
+2026-05-26 21:43:18,822 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:43:18,823 | INFO | api-gateway.http | request | request_id=a95655bc-7d43-42cf-90a3-3b2e8651b797 | method=GET | path=/api/orders | status_code=200 | elapsed_ms=432.57
+2026-05-26 21:43:19,260 | INFO | httpx | HTTP Request: GET http://localhost:8003/orders "HTTP/1.1 200 OK"
+2026-05-26 21:43:19,261 | INFO | api-gateway.http | request | request_id=5b01caac-5767-496c-90ca-ff86a20075ba | method=GET | path=/api/orders | status_code=200 | elapsed_ms=436.86
+2026-05-26 21:43:19,880 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:43:19,881 | INFO | api-gateway.http | request | request_id=e852151b-4757-4f52-bb98-f62482762558 | method=GET | path=/api/products | status_code=200 | elapsed_ms=451.37
+2026-05-26 21:43:20,329 | INFO | httpx | HTTP Request: GET http://localhost:8002/products "HTTP/1.1 200 OK"
+2026-05-26 21:43:20,331 | INFO | api-gateway.http | request | request_id=1c98892c-50ab-43d8-ab80-6b0f9632e119 | method=GET | path=/api/products | status_code=200 | elapsed_ms=447.87
+2026-05-26 21:43:22,314 | INFO | api-gateway.http | request | request_id=3f669cb1-e843-410e-a998-c6e0703ffaf2 | method=OPTIONS | path=/api/products/6 | status_code=200 | elapsed_ms=0.17
+2026-05-26 21:43:22,316 | INFO | api-gateway.http | request | request_id=717400e3-594d-4414-b100-7fed11a6be3d | method=OPTIONS | path=/api/products/6 | status_code=200 | elapsed_ms=0.24
+2026-05-26 21:43:22,759 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/6 "HTTP/1.1 200 OK"
+2026-05-26 21:43:22,760 | INFO | api-gateway.http | request | request_id=36bfae5f-2b70-485c-98a4-176f514b1df8 | method=GET | path=/api/products/6 | status_code=200 | elapsed_ms=443.07
+2026-05-26 21:43:23,195 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/6 "HTTP/1.1 200 OK"
+2026-05-26 21:43:23,196 | INFO | api-gateway.http | request | request_id=2972f3be-5675-48f2-8c04-4707d001bc8f | method=GET | path=/api/products/6 | status_code=200 | elapsed_ms=435.28

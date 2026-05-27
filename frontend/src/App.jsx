@@ -66,7 +66,7 @@ function App() {
   const updateQty = (productId, quantity) => setCart((prev) => prev.map((x) => x.product.id === productId ? { ...x, quantity: Math.max(1, quantity) } : x));
   const removeItem = (productId) => setCart((prev) => prev.filter((x) => x.product.id !== productId));
 
-  return <div className="min-h-screen bg-[linear-gradient(180deg,#fff8f5_0%,#fffdfb_38%,#fffefe_100%)] text-slate-800"><div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.16),transparent_60%)]" /><Header auth={auth} notifications={notifications} setNotifications={setNotifications} showToast={showToast} cartCount={cart.reduce((s, x) => s + x.quantity, 0)} /><main className="mx-auto w-full max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8"><Routes><Route path="/" element={<HomePage auth={auth} />} /><Route path="/login" element={<LoginPage auth={auth} showToast={showToast} />} /><Route path="/register" element={<RegisterPage showToast={showToast} />} /><Route path="/products" element={<ProductsPage />} /><Route path="/products/:id" element={<ProductDetailPage addToCart={addToCart} showToast={showToast} />} /><Route path="/cart" element={<CartPage auth={auth} cart={cart} updateQty={updateQty} removeItem={removeItem} showToast={showToast} />} /><Route path="/orders" element={<OrdersPage auth={auth} showToast={showToast} />} /><Route path="/admin/*" element={<AdminGuard auth={auth}><AdminLayout auth={auth} showToast={showToast} /></AdminGuard>} /><Route path="*" element={<Navigate to="/" replace />} /></Routes></main><Footer /><ToastStack toast={toast} /></div>;
+  return <div className="min-h-screen bg-[linear-gradient(180deg,#fff8f5_0%,#fffdfb_38%,#fffefe_100%)] text-slate-800"><div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.16),transparent_60%)]" /><Header auth={auth} notifications={notifications} setNotifications={setNotifications} showToast={showToast} cartCount={cart.reduce((s, x) => s + x.quantity, 0)} /><main className="mx-auto w-full max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8"><Routes><Route path="/" element={<HomePage auth={auth} />} /><Route path="/login" element={<LoginPage auth={auth} showToast={showToast} />} /><Route path="/register" element={<RegisterPage showToast={showToast} />} /><Route path="/account" element={<AccountPage auth={auth} showToast={showToast} />} /><Route path="/products" element={<ProductsPage />} /><Route path="/products/:id" element={<ProductDetailPage addToCart={addToCart} showToast={showToast} />} /><Route path="/cart" element={<CartPage auth={auth} cart={cart} updateQty={updateQty} removeItem={removeItem} showToast={showToast} />} /><Route path="/orders" element={<OrdersPage auth={auth} showToast={showToast} />} /><Route path="/admin/*" element={<AdminGuard auth={auth}><AdminLayout auth={auth} showToast={showToast} /></AdminGuard>} /><Route path="*" element={<Navigate to="/" replace />} /></Routes></main><Footer /><ToastStack toast={toast} /></div>;
 }
 
 function AdminGuard({ auth, children }) { const isAdmin = (auth.user?.role || '').toLowerCase() === 'admin'; if (!auth.token) return <Navigate to="/login" replace />; if (!isAdmin) return <Navigate to="/" replace />; return children; }
@@ -151,9 +151,12 @@ function Header({ auth, notifications, setNotifications, showToast, cartCount })
           </div>
 
           {auth.token ? (
-            <button onClick={() => { auth.logout(); showToast('Đã đăng xuất', 'info'); navigate('/login'); }} className="hidden items-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft sm:flex">
-              <LogOut size={16} /> Đăng xuất
-            </button>
+            <div className="hidden items-center gap-2 sm:flex">
+              <TopAction to="/account" icon={User} label="Tài khoản" secondary />
+              <button onClick={() => { auth.logout(); showToast('Đã đăng xuất', 'info'); navigate('/login'); }} className="flex items-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft">
+                <LogOut size={16} /> Đăng xuất
+              </button>
+            </div>
           ) : (
             <div className="hidden items-center gap-2 sm:flex">
               <TopAction to="/login" icon={LogIn} label="Đăng nhập" secondary />
@@ -198,6 +201,40 @@ function RegisterPage({ showToast }) { const navigate = useNavigate(); const [fo
 function AuthShell({ title, form, setForm, submit, loading, mode, footer }) { return <div className="mx-auto max-w-2xl animate-fadeUp"><div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8"><div className="mb-6"><h2 className="text-3xl font-semibold tracking-tight text-slate-900">{title}</h2><p className="mt-2 text-slate-600">{mode === 'login' ? 'Truy cập vào hệ thống đặt món' : 'Tạo tài khoản mới'}</p></div><form onSubmit={submit} className="grid gap-4">{mode === 'register' && <Input label="Họ tên" value={form.full_name} onChange={(v) => setForm({ ...form, full_name: v })} placeholder="Nguyễn Văn A" />}{mode === 'login' ? <Input label="Email" value={form.username} onChange={(v) => setForm({ ...form, username: v })} placeholder="you@example.com" /> : <Input label="Email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="you@example.com" />}<Input label="Mật khẩu" type="password" value={form.password} onChange={(v) => setForm({ ...form, password: v })} placeholder="••••••••" />{mode === 'register' && <Input label="Số điện thoại" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} placeholder="0912345678" />}<button disabled={loading} className="mt-2 rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60">{loading ? 'Đang xử lý...' : title}</button></form><div className="mt-5 text-sm text-slate-600">{footer}</div></div></div>; }
 function Input({ label, value, onChange, type = 'text', placeholder }) { return <label className="grid gap-2"><span className="text-sm font-medium text-slate-700">{label}</span><input value={value} onChange={(e) => onChange(e.target.value)} type={type} placeholder={placeholder} className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none transition focus:border-brand-400 focus:bg-white" /></label>; }
 function InlineLink({ to, label }) { const navigate = useNavigate(); return <button onClick={() => navigate(to)} className="font-medium text-brand-700 transition hover:text-brand-800 hover:underline">{label}</button>; }
+
+function AccountPage({ auth, showToast }) {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ full_name: '', email: '', phone: '' });
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (!auth.token) {
+      showToast('Bạn cần đăng nhập để xem tài khoản', 'error');
+      navigate('/login');
+      return;
+    }
+    setForm({ full_name: auth.user?.full_name || '', email: auth.user?.email || '', phone: auth.user?.phone || '' });
+  }, [auth.token, auth.user, navigate, showToast]);
+
+  const saveProfile = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const payload = { full_name: form.full_name, email: form.email, phone: form.phone };
+      await api.put('/users/me', payload);
+      showToast('Cập nhật tài khoản thành công', 'success');
+      const { data } = await api.get('/auth/me');
+      localStorage.setItem('current_user_id', String(data.id || ''));
+      window.location.reload();
+    } catch (err) {
+      showToast(err?.response?.data?.detail || 'Cập nhật tài khoản thất bại', 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return <div className="animate-fadeUp"><SectionHeader title="Tài khoản của tôi" subtitle="Cập nhật thông tin cá nhân để đơn hàng và thông báo hiển thị đầy đủ hơn." /><div className="grid gap-6 lg:grid-cols-[1fr_360px]"><Panel title="Thông tin tài khoản" subtitle="Chỉnh sửa thông tin người dùng"><form onSubmit={saveProfile} className="grid gap-4"><Input label="Họ tên" value={form.full_name} onChange={(v) => setForm((p) => ({ ...p, full_name: v }))} placeholder="Họ và tên" /><Input label="Email" value={form.email} onChange={(v) => setForm((p) => ({ ...p, email: v }))} placeholder="Email" /><Input label="Số điện thoại" value={form.phone} onChange={(v) => setForm((p) => ({ ...p, phone: v }))} placeholder="Số điện thoại" /><button disabled={saving} className="rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-60">{saving ? 'Đang lưu...' : 'Lưu thay đổi'}</button></form></Panel><Panel title="Thông tin nhanh" subtitle="Tóm tắt tài khoản hiện tại"><div className="space-y-3 text-sm text-slate-600"><div className="rounded-2xl bg-stone-50 px-4 py-3"><div className="text-xs uppercase text-slate-400">Role</div><div className="mt-1 font-semibold text-slate-900">{auth.user?.role || '-'}</div></div><div className="rounded-2xl bg-stone-50 px-4 py-3"><div className="text-xs uppercase text-slate-400">Email</div><div className="mt-1 font-semibold text-slate-900">{auth.user?.email || '-'}</div></div><div className="rounded-2xl bg-stone-50 px-4 py-3"><div className="text-xs uppercase text-slate-400">Số điện thoại</div><div className="mt-1 font-semibold text-slate-900">{auth.user?.phone || '-'}</div></div></div></Panel></div></div>;
+}
 
 function ProductsPage() {
   const [products, setProducts] = useState([]); const [loading, setLoading] = useState(true);
@@ -262,6 +299,10 @@ function OrdersPage({ auth, showToast }) {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const pageSize = 5;
 
   useEffect(() => {
     if (!auth.token) {
@@ -272,12 +313,66 @@ function OrdersPage({ auth, showToast }) {
     api.get('/orders').then(({ data }) => setOrders(Array.isArray(data) ? data : [])).catch(() => setOrders([]));
   }, [auth.token, navigate, showToast]);
 
+  useEffect(() => { setPage(1); }, [statusFilter, search]);
+
+  const filteredOrders = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return orders.filter((order) => {
+      const statusOk = statusFilter === 'all' ? true : String(order.status || '').toLowerCase() === statusFilter;
+      const searchOk = !q ? true : String(order.id).includes(q) || String(order.status || '').toLowerCase().includes(q) || String(order.total_amount || '').includes(q);
+      return statusOk && searchOk;
+    });
+  }, [orders, search, statusFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredOrders.length / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const paginatedOrders = filteredOrders.slice((safePage - 1) * pageSize, safePage * pageSize);
+
+  const summary = useMemo(() => ({
+    total: orders.length,
+    pending: orders.filter((o) => String(o.status).toLowerCase() === 'pending').length,
+    delivering: orders.filter((o) => String(o.status).toLowerCase() === 'delivering').length,
+    completed: orders.filter((o) => String(o.status).toLowerCase() === 'completed').length,
+    cancelled: orders.filter((o) => String(o.status).toLowerCase() === 'cancelled').length,
+  }), [orders]);
+
   return (
     <div className="animate-fadeUp">
-      <SectionHeader title="Đơn hàng" subtitle="Bấm vào từng đơn để xem chi tiết dạng sheet." />
-      {orders.length ? (
+      <SectionHeader title="Đơn hàng" subtitle="Có filter, tìm kiếm và phân trang để xem gọn hơn." />
+
+      <div className="mb-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        <div className="rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="text-xs uppercase text-slate-400">Tổng đơn</div><div className="mt-2 text-3xl font-semibold text-slate-900">{summary.total}</div></div>
+        <div className="rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="text-xs uppercase text-slate-400">Pending</div><div className="mt-2 text-3xl font-semibold text-amber-600">{summary.pending}</div></div>
+        <div className="rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="text-xs uppercase text-slate-400">Delivering</div><div className="mt-2 text-3xl font-semibold text-blue-600">{summary.delivering}</div></div>
+        <div className="rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="text-xs uppercase text-slate-400">Completed</div><div className="mt-2 text-3xl font-semibold text-emerald-600">{summary.completed}</div></div>
+        <div className="rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="text-xs uppercase text-slate-400">Cancelled</div><div className="mt-2 text-3xl font-semibold text-red-600">{summary.cancelled}</div></div>
+      </div>
+
+      <div className="mb-5 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft">
+        <div className="grid gap-3 lg:grid-cols-[1fr_240px_160px]">
+          <label className="grid gap-2">
+            <span className="text-sm font-medium text-slate-700">Tìm kiếm</span>
+            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Tìm theo mã đơn, trạng thái, tổng tiền" className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white" />
+          </label>
+          <label className="grid gap-2">
+            <span className="text-sm font-medium text-slate-700">Lọc theo trạng thái</span>
+            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white">
+              <option value="all">Tất cả</option>
+              <option value="pending">Pending</option>
+              <option value="delivering">Delivering</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </label>
+          <div className="flex items-end">
+            <button onClick={() => { setSearch(''); setStatusFilter('all'); }} className="w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-semibold text-slate-700 hover:bg-stone-50">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      {paginatedOrders.length ? (
         <div className="grid gap-4">
-          {orders.map((order) => (
+          {paginatedOrders.map((order) => (
             <button key={order.id} onClick={() => setSelectedOrder(order)} className="rounded-[1.75rem] border border-stone-200 bg-white p-5 text-left shadow-soft transition hover:-translate-y-0.5 hover:shadow-[0_24px_50px_rgba(15,23,42,0.08)]">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -294,8 +389,25 @@ function OrdersPage({ auth, showToast }) {
           ))}
         </div>
       ) : (
-        <EmptyState title="Chưa có đơn hàng nào" description="Khi tạo order, danh sách sẽ xuất hiện ở đây." />
+        <EmptyState title="Không có đơn hàng phù hợp" description="Hãy đổi filter hoặc tìm kiếm khác." />
       )}
+
+      {filteredOrders.length > 0 && (
+        <div className="mt-6 flex flex-col gap-3 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-sm text-slate-600">Trang {safePage} / {totalPages} • {filteredOrders.length} đơn phù hợp</div>
+          <div className="flex items-center gap-2">
+            <button disabled={safePage === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Trước</button>
+            {Array.from({ length: totalPages }).slice(Math.max(0, safePage - 3), Math.min(totalPages, safePage + 2)).map((_, idx) => {
+              const pageNumber = Math.max(1, safePage - 2) + idx;
+              if (pageNumber > totalPages) return null;
+              const active = pageNumber === safePage;
+              return <button key={pageNumber} onClick={() => setPage(pageNumber)} className={clsx('min-w-10 rounded-2xl px-4 py-2 text-sm font-semibold transition', active ? 'bg-brand-600 text-white' : 'border border-stone-200 text-slate-700 hover:bg-stone-50')}>{pageNumber}</button>;
+            })}
+            <button disabled={safePage === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Sau</button>
+          </div>
+        </div>
+      )}
+
       {selectedOrder && <OrderSheet order={selectedOrder} onClose={() => setSelectedOrder(null)} />}
     </div>
   );
@@ -366,8 +478,14 @@ function AdminLayout({ auth, showToast }) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [productForm, setProductForm] = useState({ name: '', price: '', category: '', description: '', image_url: '' });
   const [productModalOpen, setProductModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [statusBusy, setStatusBusy] = useState({});
+  const [orderStatusFilter, setOrderStatusFilter] = useState('all');
+  const [orderSort, setOrderSort] = useState('newest');
+  const [orderSearch, setOrderSearch] = useState('');
+  const [orderPage, setOrderPage] = useState(1);
+  const orderPageSize = 5;
 
   const loadAll = async () => {
     setLoading(true);
@@ -383,6 +501,7 @@ function AdminLayout({ auth, showToast }) {
 
   useEffect(() => { loadAll(); }, [showToast]);
   useEffect(() => { const key = location.hash.replace('#', '') || 'dashboard'; setActiveTab(key); }, [location.hash]);
+  useEffect(() => { setOrderPage(1); }, [orderStatusFilter, orderSearch, orderSort]);
 
   const createProduct = async (e) => {
     e.preventDefault();
@@ -393,6 +512,56 @@ function AdminLayout({ auth, showToast }) {
       setProductForm({ name: '', price: '', category: '', description: '', image_url: '' });
       loadAll();
     } catch (err) { showToast(err?.response?.data?.detail || 'Tạo sản phẩm thất bại', 'error'); }
+  };
+
+  const updateProduct = async (e) => {
+    e.preventDefault();
+    if (!editingProduct) return;
+    try {
+      await api.put(`/products/${editingProduct.id}`, { ...productForm, price: Number(productForm.price) });
+      showToast('Cập nhật sản phẩm thành công', 'success');
+      setEditingProduct(null);
+      setProductModalOpen(false);
+      setProductForm({ name: '', price: '', category: '', description: '', image_url: '' });
+      loadAll();
+    } catch (err) {
+      showToast(err?.response?.data?.detail || 'Cập nhật sản phẩm thất bại', 'error');
+    }
+  };
+
+  const openEditProduct = (product) => {
+    setEditingProduct(product);
+    setProductForm({
+      name: product.name || '',
+      price: String(product.price ?? ''),
+      category: product.category || '',
+      description: product.description || '',
+      image_url: product.image_url || '',
+    });
+    setProductModalOpen(true);
+  };
+
+  const closeProductModal = () => {
+    setProductModalOpen(false);
+    setEditingProduct(null);
+    setProductForm({ name: '', price: '', category: '', description: '', image_url: '' });
+  };
+
+  const clearOrderFilters = () => {
+    setOrderStatusFilter('all');
+    setOrderSort('newest');
+    setOrderSearch('');
+    setOrderPage(1);
+  };
+
+  const deleteProduct = async (productId) => {
+    try {
+      await api.delete(`/products/${productId}`);
+      showToast('Đã xóa sản phẩm', 'success');
+      loadAll();
+    } catch (err) {
+      showToast(err?.response?.data?.detail || 'Xóa sản phẩm thất bại', 'error');
+    }
   };
 
   const updateOrderStatus = async (orderId, status) => {
@@ -406,6 +575,34 @@ function AdminLayout({ auth, showToast }) {
     finally { setStatusBusy((p) => ({ ...p, [orderId]: false })); }
   };
 
+  const filteredOrders = useMemo(() => {
+    const q = orderSearch.trim().toLowerCase();
+    const base = orders.filter((order) => {
+      const status = String(order.status || '').toLowerCase();
+      const statusOk = orderStatusFilter === 'all' ? true : status === orderStatusFilter;
+      const searchOk = !q ? true : String(order.id).includes(q) || status.includes(q) || String(order.total_amount || '').includes(q);
+      return statusOk && searchOk;
+    });
+
+    const sorted = [...base].sort((a, b) => {
+      const idA = Number(a.id) || 0;
+      const idB = Number(b.id) || 0;
+      const priceA = Number(a.total_amount) || 0;
+      const priceB = Number(b.total_amount) || 0;
+      if (orderSort === 'id_asc') return idA - idB;
+      if (orderSort === 'id_desc') return idB - idA;
+      if (orderSort === 'price_asc') return priceA - priceB;
+      if (orderSort === 'price_desc') return priceB - priceA;
+      return idB - idA;
+    });
+
+    return sorted;
+  }, [orders, orderSearch, orderSort, orderStatusFilter]);
+
+  const totalOrderPages = Math.max(1, Math.ceil(filteredOrders.length / orderPageSize));
+  const currentOrderPage = Math.min(orderPage, totalOrderPages);
+  const paginatedOrders = filteredOrders.slice((currentOrderPage - 1) * orderPageSize, currentOrderPage * orderPageSize);
+
   const tabs = [
     { key: 'dashboard', label: 'Dashboard' },
     { key: 'users', label: 'Users' },
@@ -414,9 +611,9 @@ function AdminLayout({ auth, showToast }) {
     { key: 'notifications', label: 'Notifications' },
   ];
 
-  return <div className="grid gap-6 lg:grid-cols-[260px_1fr]"><aside className="rounded-[2rem] border border-stone-200 bg-white p-4 shadow-soft lg:sticky lg:top-24 lg:h-fit"><div className="mb-4 rounded-[1.5rem] bg-brand-50 p-4"><div className="text-sm font-semibold text-brand-800">Admin Panel</div><div className="mt-1 text-sm text-slate-600">Xin chào, {auth.user?.full_name || 'Admin'}</div></div><div className="space-y-2">{tabs.map((item) => <button key={item.key} onClick={() => navigate(`/admin#${item.key}`)} className={clsx('flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition', activeTab === item.key ? 'bg-brand-100 text-brand-800' : 'bg-stone-50 text-slate-700 hover:bg-stone-100')}>{item.label}<ChevronRight size={16} /></button>)}</div></aside><section className="space-y-6"><SectionHeader title="Admin Dashboard" subtitle="Thống kê nhanh và các bảng quản trị cho users, products, orders." />{loading ? <CardGridSkeleton /> : <>{activeTab === 'dashboard' && <div className="space-y-6"><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"><MetricCard label="Users" value={users.length} icon={User} /><MetricCard label="Products" value={products.length} icon={Store} /><MetricCard label="Orders" value={orders.length} icon={ShoppingBag} /><MetricCard label="Notifications" value={notifications.length} icon={Bell} /></div><Panel title="Tổng quan service" subtitle="Trạng thái nhanh cho báo cáo/demo"><div className="grid gap-3 text-sm text-slate-600 md:grid-cols-3"><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>API Gateway</span><span className="font-semibold text-emerald-600">Running</span></div><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>Auth Service</span><span className="font-semibold text-emerald-600">Running</span></div><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>RabbitMQ</span><span className="font-semibold text-emerald-600">Running</span></div></div></Panel></div>}{activeTab === 'users' && <Panel title="Users" subtitle="Danh sách tất cả người dùng"><div className="overflow-hidden rounded-2xl border border-stone-200"><table className="w-full text-sm"><thead className="bg-stone-50 text-left text-slate-600"><tr><th className="px-4 py-3">ID</th><th className="px-4 py-3">Tên</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Role</th><th className="px-4 py-3">Active</th></tr></thead><tbody>{users.length ? users.map((user) => <tr key={user.id} className="border-t border-stone-200"><td className="px-4 py-3">#{user.id}</td><td className="px-4 py-3 font-medium text-slate-900">{user.full_name}</td><td className="px-4 py-3">{user.email}</td><td className="px-4 py-3"><span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">{user.role}</span></td><td className="px-4 py-3">{user.is_active ? 'Yes' : 'No'}</td></tr>) : <tr><td className="px-4 py-6 text-center text-slate-500" colSpan="5">Chưa có dữ liệu users.</td></tr>}</tbody></table></div></Panel>}{activeTab === 'products' && <div className="space-y-4"><div className="flex justify-end"><button onClick={() => setProductModalOpen(true)} className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700"><PlusCircle size={16} /> Thêm sản phẩm</button></div><Panel title="Products" subtitle="Danh sách sản phẩm dạng sheet, mỗi hàng có avatar, tên, giá"><div className="space-y-3">{products.length ? products.map((product) => <div key={product.id} className="flex items-center gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-soft"><img src={product.image_url || emptyImage} alt={product.name} className="h-14 w-14 rounded-2xl object-cover" /><div className="min-w-0 flex-1"><div className="font-semibold text-slate-900">{product.name}</div><div className="text-sm text-slate-500">{product.category || 'No category'}</div></div><div className="text-sm font-semibold text-brand-700">{currency.format(product.price)}</div></div>) : <EmptyState title="Chưa có sản phẩm" description="Bấm Thêm sản phẩm để tạo mới." />}</div></Panel></div>}{activeTab === 'orders' && <Panel title="Orders" subtitle="Danh sách order, xem chi tiết và cập nhật status bằng tick/x"><div className="space-y-3">{orders.length ? orders.map((order) => { const isFinal = ['completed', 'cancelled'].includes(String(order.status).toLowerCase()); return <button key={order.id} onClick={() => setSelectedOrder(order)} className="w-full rounded-2xl border border-stone-200 bg-white p-4 text-left shadow-soft hover:bg-stone-50"><div className="flex items-center justify-between gap-3"><div><div className="font-semibold text-slate-900">Đơn #{order.id}</div><div className="text-sm text-slate-500">{order.status}</div></div><div className="text-brand-700 font-semibold">{currency.format(order.total_amount || 0)}</div></div>{!isFinal && <div className="mt-3 flex items-center gap-2"><button onClick={(e) => { e.stopPropagation(); updateOrderStatus(order.id, order.status === 'pending' ? 'delivering' : 'completed'); }} disabled={!!statusBusy[order.id]} className="inline-flex items-center gap-1 rounded-xl bg-emerald-100 px-3 py-2 text-xs font-semibold text-emerald-700 disabled:opacity-50"><span>✓</span> {order.status === 'pending' ? 'Delivering' : 'Complete'}</button><button onClick={(e) => { e.stopPropagation(); updateOrderStatus(order.id, 'cancelled'); }} disabled={!!statusBusy[order.id]} className="inline-flex items-center gap-1 rounded-xl bg-red-100 px-3 py-2 text-xs font-semibold text-red-700 disabled:opacity-50"><span>✕</span> Cancel</button></div>}</button>; }) : <EmptyState title="Chưa có order" description="Order mới sẽ hiển thị ở đây." />}</div></Panel>}{activeTab === 'notifications' && <Panel title="Notifications" subtitle="Sự kiện gần nhất từ hệ thống"><div className="space-y-2">{notifications.length ? notifications.slice(0, 10).map((item) => <NotificationItem key={item.id} item={{ ...item, read: false }} />) : <EmptyState title="Chưa có notification" description="Các thông báo mới sẽ xuất hiện ở đây." />}</div></Panel>}</>}
-{selectedOrder && <OrderSheet order={selectedOrder} onClose={() => setSelectedOrder(null)} />}
-{productModalOpen && <ProductModal form={productForm} setForm={setProductForm} onClose={() => setProductModalOpen(false)} onSubmit={createProduct} />}</section></div>;
+  return <div className="grid gap-6 lg:grid-cols-[260px_1fr]"><aside className="rounded-[2rem] border border-stone-200 bg-white p-4 shadow-soft lg:sticky lg:top-24 lg:h-fit"><div className="mb-4 rounded-[1.5rem] bg-brand-50 p-4"><div className="text-sm font-semibold text-brand-800">Admin Panel</div><div className="mt-1 text-sm text-slate-600">Xin chào, {auth.user?.full_name || 'Admin'}</div></div><div className="space-y-2">{tabs.map((item) => <button key={item.key} onClick={() => navigate(`/admin#${item.key}`)} className={clsx('flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition', activeTab === item.key ? 'bg-brand-100 text-brand-800' : 'bg-stone-50 text-slate-700 hover:bg-stone-100')}>{item.label}<ChevronRight size={16} /></button>)}</div></aside><section className="space-y-6"><SectionHeader title="Admin Dashboard" subtitle="Thống kê nhanh và các bảng quản trị cho users, products, orders." />{loading ? <CardGridSkeleton /> : <>{activeTab === 'dashboard' && <div className="space-y-6"><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"><MetricCard label="Users" value={users.length} icon={User} /><MetricCard label="Products" value={products.length} icon={Store} /><MetricCard label="Orders" value={orders.length} icon={ShoppingBag} /><MetricCard label="Notifications" value={notifications.length} icon={Bell} /></div><Panel title="Tổng quan service" subtitle="Trạng thái nhanh cho báo cáo/demo"><div className="grid gap-3 text-sm text-slate-600 md:grid-cols-3"><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>API Gateway</span><span className="font-semibold text-emerald-600">Running</span></div><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>Auth Service</span><span className="font-semibold text-emerald-600">Running</span></div><div className="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3"><span>RabbitMQ</span><span className="font-semibold text-emerald-600">Running</span></div></div></Panel></div>}{activeTab === 'users' && <Panel title="Users" subtitle="Danh sách tất cả người dùng"><div className="overflow-hidden rounded-2xl border border-stone-200"><table className="w-full text-sm"><thead className="bg-stone-50 text-left text-slate-600"><tr><th className="px-4 py-3">ID</th><th className="px-4 py-3">Tên</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Role</th><th className="px-4 py-3">Active</th></tr></thead><tbody>{users.length ? users.map((user) => <tr key={user.id} className="border-t border-stone-200"><td className="px-4 py-3">#{user.id}</td><td className="px-4 py-3 font-medium text-slate-900">{user.full_name}</td><td className="px-4 py-3">{user.email}</td><td className="px-4 py-3"><span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">{user.role}</span></td><td className="px-4 py-3">{user.is_active ? 'Yes' : 'No'}</td></tr>) : <tr><td className="px-4 py-6 text-center text-slate-500" colSpan="5">Chưa có dữ liệu users.</td></tr>}</tbody></table></div></Panel>}{activeTab === 'products' && <div className="space-y-4"><div className="flex justify-end"><button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', category: '', description: '', image_url: '' }); setProductModalOpen(true); }} className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700"><PlusCircle size={16} /> Thêm sản phẩm</button></div><Panel title="Products" subtitle="Danh sách sản phẩm dạng sheet, mỗi hàng có avatar, tên, giá"><div className="space-y-3">{products.length ? products.map((product) => <div key={product.id} className="flex items-center gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-soft"><img src={product.image_url || emptyImage} alt={product.name} className="h-14 w-14 rounded-2xl object-cover" /><div className="min-w-0 flex-1"><div className="font-semibold text-slate-900">{product.name}</div><div className="text-sm text-slate-500">{product.category || 'No category'}</div></div><div className="flex items-center gap-2"><div className="text-sm font-semibold text-brand-700">{currency.format(product.price)}</div><button onClick={() => openEditProduct(product)} className="rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 hover:bg-brand-100">Sửa</button><button onClick={() => deleteProduct(product.id)} className="grid h-9 w-9 place-items-center rounded-xl border border-red-200 bg-red-50 text-red-600 transition hover:bg-red-100" title="Xóa sản phẩm" aria-label={`Xóa sản phẩm ${product.name}`}><X size={16} /></button></div></div>) : <EmptyState title="Chưa có sản phẩm" description="Bấm Thêm sản phẩm để tạo mới." />}</div></Panel></div>}{activeTab === 'orders' && <Panel title="Orders" subtitle="Danh sách order, xem chi tiết và cập nhật status bằng tick/x"><div className="mb-4 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="grid gap-3 lg:grid-cols-[1fr_220px_220px_160px]"><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Tìm kiếm</span><input value={orderSearch} onChange={(e) => setOrderSearch(e.target.value)} placeholder="Tìm theo mã đơn, trạng thái, tổng tiền" className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white" /></label><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Trạng thái</span><select value={orderStatusFilter} onChange={(e) => setOrderStatusFilter(e.target.value)} className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white"><option value="all">Tất cả</option><option value="pending">Pending</option><option value="delivering">Delivering</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Sắp xếp</span><select value={orderSort} onChange={(e) => setOrderSort(e.target.value)} className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white"><option value="newest">Mới nhất lên đầu</option><option value="id_desc">Mã đơn giảm dần</option><option value="id_asc">Mã đơn tăng dần</option><option value="price_desc">Giá cao → thấp</option><option value="price_asc">Giá thấp → cao</option></select></label><div className="flex items-end"><button onClick={clearOrderFilters} className="w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-semibold text-slate-700 hover:bg-stone-50">Reset</button></div></div></div><div className="space-y-3">{paginatedOrders.length ? paginatedOrders.map((order) => { const isFinal = ['completed', 'cancelled'].includes(String(order.status).toLowerCase()); return <button key={order.id} onClick={() => setSelectedOrder(order)} className="w-full rounded-2xl border border-stone-200 bg-white p-4 text-left shadow-soft hover:bg-stone-50"><div className="flex items-center justify-between gap-3"><div><div className="font-semibold text-slate-900">Đơn #{order.id}</div><div className="text-sm text-slate-500">{order.status}</div></div><div className="text-brand-700 font-semibold">{currency.format(order.total_amount || 0)}</div></div>{!isFinal && <div className="mt-3 flex items-center gap-2"><button onClick={(e) => { e.stopPropagation(); updateOrderStatus(order.id, order.status === 'pending' ? 'delivering' : 'completed'); }} disabled={!!statusBusy[order.id]} className="inline-flex items-center gap-1 rounded-xl bg-emerald-100 px-3 py-2 text-xs font-semibold text-emerald-700 disabled:opacity-50"><span>✓</span> {order.status === 'pending' ? 'Delivering' : 'Complete'}</button><button onClick={(e) => { e.stopPropagation(); updateOrderStatus(order.id, 'cancelled'); }} disabled={!!statusBusy[order.id]} className="inline-flex items-center gap-1 rounded-xl bg-red-100 px-3 py-2 text-xs font-semibold text-red-700 disabled:opacity-50"><span>✕</span> Cancel</button></div>}</button>; }) : <EmptyState title="Không có order phù hợp" description="Hãy đổi filter hoặc tìm kiếm khác." />}</div>{filteredOrders.length > 0 && <div className="mt-6 flex flex-col gap-3 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between"><div className="text-sm text-slate-600">Trang {currentOrderPage} / {totalOrderPages} • {filteredOrders.length} đơn phù hợp</div><div className="flex items-center gap-2"><button disabled={currentOrderPage === 1} onClick={() => setOrderPage((p) => Math.max(1, p - 1))} className="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Trước</button>{Array.from({ length: totalOrderPages }).slice(Math.max(0, currentOrderPage - 3), Math.min(totalOrderPages, currentOrderPage + 2)).map((_, idx) => { const pageNumber = Math.max(1, currentOrderPage - 2) + idx; if (pageNumber > totalOrderPages) return null; const active = pageNumber === currentOrderPage; return <button key={pageNumber} onClick={() => setOrderPage(pageNumber)} className={clsx('min-w-10 rounded-2xl px-4 py-2 text-sm font-semibold transition', active ? 'bg-brand-600 text-white' : 'border border-stone-200 text-slate-700 hover:bg-stone-50')}>{pageNumber}</button>; })}<button disabled={currentOrderPage === totalOrderPages} onClick={() => setOrderPage((p) => Math.min(totalOrderPages, p + 1))} className="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-slate-700 disabled:cursor-not-allowed disabled:opacity-50">Sau</button></div></div>}</Panel>}{activeTab === 'notifications' && <Panel title="Notifications" subtitle="Sự kiện gần nhất từ hệ thống"><div className="space-y-2">{notifications.length ? notifications.slice(0, 10).map((item) => <NotificationItem key={item.id} item={{ ...item, read: false }} />) : <EmptyState title="Chưa có notification" description="Các thông báo mới sẽ xuất hiện ở đây." />}</div></Panel>}</>}
+{productModalOpen && <ProductModal mode={editingProduct ? 'edit' : 'create'} form={productForm} setForm={setProductForm} onClose={closeProductModal} onSubmit={editingProduct ? updateProduct : createProduct} />}
+{selectedOrder && <OrderSheet order={selectedOrder} onClose={() => setSelectedOrder(null)} />}</section></div>;
 }
 
 function Panel({ title, subtitle, children }) { return <div className="rounded-[2rem] border border-stone-200 bg-white p-5 shadow-soft"><div className="mb-4"><div className="text-lg font-semibold text-slate-900">{title}</div><div className="mt-1 text-sm text-slate-500">{subtitle}</div></div>{children}</div>; }
@@ -429,6 +626,6 @@ function ToastStack({ toast }) { if (!toast) return null; const styles = { succe
 function Footer() { return <footer className="border-t border-stone-200 bg-white/80"><div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between"><div className="flex items-center gap-2 font-medium text-slate-700"><Sparkles size={16} className="text-brand-600" /> FoodFlow demo</div><div>React + Tailwind • Gateway • Microservice ordering experience</div></div></footer>; }
 function CardGridSkeleton() { return <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-[360px] animate-pulse rounded-[1.75rem] bg-white shadow-soft" />)}</div>; }
 function DetailSkeleton() { return <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]"><div className="h-[420px] animate-pulse rounded-[2rem] bg-white shadow-soft" /><div className="h-[420px] animate-pulse rounded-[2rem] bg-white shadow-soft" /></div>; }
-function ProductModal({ form, setForm, onClose, onSubmit }) { return <div className="fixed inset-0 z-[95] bg-slate-950/40 backdrop-blur-sm"><div className="mx-auto mt-24 w-[min(92vw,720px)] rounded-[2rem] bg-white p-6 shadow-[0_24px_80px_rgba(15,23,42,0.24)]"><div className="flex items-start justify-between"><div><div className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Thêm sản phẩm</div><div className="mt-1 text-2xl font-semibold text-slate-900">Tạo mới sản phẩm</div></div><button onClick={onClose} className="rounded-2xl border border-stone-200 p-2 text-slate-600 hover:bg-stone-50"><X size={18} /></button></div><form onSubmit={onSubmit} className="mt-5 grid gap-4 sm:grid-cols-2"><Field label="Tên sản phẩm" value={form.name} onChange={(v) => setForm((p) => ({ ...p, name: v }))} /><Field label="Giá" type="number" value={form.price} onChange={(v) => setForm((p) => ({ ...p, price: v }))} /><Field label="Danh mục" value={form.category} onChange={(v) => setForm((p) => ({ ...p, category: v }))} /><Field label="Ảnh URL" value={form.image_url} onChange={(v) => setForm((p) => ({ ...p, image_url: v }))} /><div className="sm:col-span-2"><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Mô tả</span><textarea value={form.description} onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} rows="4" className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none transition focus:border-brand-400 focus:bg-white" /></label></div><div className="sm:col-span-2 flex justify-end gap-3"><button type="button" onClick={onClose} className="rounded-2xl border border-stone-200 px-5 py-3 font-semibold text-slate-700 hover:bg-stone-50">Hủy</button><button className="rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Lưu sản phẩm</button></div></form></div></div>; }
+function ProductModal({ mode = 'create', form, setForm, onClose, onSubmit }) { return <div className="fixed inset-0 z-[95] bg-slate-950/40 backdrop-blur-sm"><div className="mx-auto mt-24 w-[min(92vw,720px)] rounded-[2rem] bg-white p-6 shadow-[0_24px_80px_rgba(15,23,42,0.24)]"><div className="flex items-start justify-between"><div><div className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">{mode === 'edit' ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm'}</div><div className="mt-1 text-2xl font-semibold text-slate-900">{mode === 'edit' ? 'Cập nhật thông tin sản phẩm' : 'Tạo mới sản phẩm'}</div></div><button onClick={onClose} className="rounded-2xl border border-stone-200 p-2 text-slate-600 hover:bg-stone-50"><X size={18} /></button></div><form onSubmit={onSubmit} className="mt-5 grid gap-4 sm:grid-cols-2"><Field label="Tên sản phẩm" value={form.name} onChange={(v) => setForm((p) => ({ ...p, name: v }))} /><Field label="Giá" type="number" value={form.price} onChange={(v) => setForm((p) => ({ ...p, price: v }))} /><Field label="Danh mục" value={form.category} onChange={(v) => setForm((p) => ({ ...p, category: v }))} /><Field label="Ảnh URL" value={form.image_url} onChange={(v) => setForm((p) => ({ ...p, image_url: v }))} /><div className="sm:col-span-2"><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Mô tả</span><textarea value={form.description} onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} rows="4" className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none transition focus:border-brand-400 focus:bg-white" /></label></div><div className="sm:col-span-2 flex justify-end gap-3"><button type="button" onClick={onClose} className="rounded-2xl border border-stone-200 px-5 py-3 font-semibold text-slate-700 hover:bg-stone-50">Hủy</button><button className="rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">{mode === 'edit' ? 'Lưu thay đổi' : 'Lưu sản phẩm'}</button></div></form></div></div>; }
 
 export default App;
