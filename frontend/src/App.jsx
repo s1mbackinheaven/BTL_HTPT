@@ -66,7 +66,7 @@ function App() {
   const updateQty = (productId, quantity) => setCart((prev) => prev.map((x) => x.product.id === productId ? { ...x, quantity: Math.max(1, quantity) } : x));
   const removeItem = (productId) => setCart((prev) => prev.filter((x) => x.product.id !== productId));
 
-  return <div className="min-h-screen bg-[linear-gradient(180deg,#fff8f5_0%,#fffdfb_38%,#fffefe_100%)] text-slate-800"><div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.16),transparent_60%)]" /><Header auth={auth} notifications={notifications} setNotifications={setNotifications} showToast={showToast} cartCount={cart.reduce((s, x) => s + x.quantity, 0)} /><main className="mx-auto w-full max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8"><Routes><Route path="/" element={<HomePage auth={auth} />} /><Route path="/login" element={<LoginPage auth={auth} showToast={showToast} />} /><Route path="/register" element={<RegisterPage showToast={showToast} />} /><Route path="/account" element={<AccountPage auth={auth} showToast={showToast} />} /><Route path="/products" element={<ProductsPage />} /><Route path="/products/:id" element={<ProductDetailPage addToCart={addToCart} showToast={showToast} />} /><Route path="/cart" element={<CartPage auth={auth} cart={cart} updateQty={updateQty} removeItem={removeItem} showToast={showToast} />} /><Route path="/orders" element={<OrdersPage auth={auth} showToast={showToast} />} /><Route path="/admin/*" element={<AdminGuard auth={auth}><AdminLayout auth={auth} showToast={showToast} /></AdminGuard>} /><Route path="*" element={<Navigate to="/" replace />} /></Routes></main><Footer /><ToastStack toast={toast} /></div>;
+  return <div className="min-h-screen bg-[linear-gradient(180deg,#fff8f5_0%,#fffdfb_38%,#fffefe_100%)] text-slate-800"><div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.16),transparent_60%)]" /><Header auth={auth} notifications={notifications} setNotifications={setNotifications} showToast={showToast} cartCount={cart.reduce((s, x) => s + x.quantity, 0)} /><main className="mx-auto w-full max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8"><Routes><Route path="/" element={<HomePage auth={auth} />} /><Route path="/login" element={<LoginPage auth={auth} showToast={showToast} />} /><Route path="/register" element={<RegisterPage showToast={showToast} />} /><Route path="/account" element={<AccountPage auth={auth} showToast={showToast} />} /><Route path="/products" element={<ProductsPage />} /><Route path="/products/:id" element={<ProductDetailPage addToCart={addToCart} showToast={showToast} />} /><Route path="/cart" element={<CartPage auth={auth} cart={cart} updateQty={updateQty} removeItem={removeItem} showToast={showToast} />} /><Route path="/checkout/payment" element={<CheckoutPaymentPage auth={auth} showToast={showToast} />} /><Route path="/orders" element={<OrdersPage auth={auth} showToast={showToast} />} /><Route path="/admin/*" element={<AdminGuard auth={auth}><AdminLayout auth={auth} showToast={showToast} /></AdminGuard>} /><Route path="*" element={<Navigate to="/" replace />} /></Routes></main><Footer /><ToastStack toast={toast} /></div>;
 }
 
 function AdminGuard({ auth, children }) { const isAdmin = (auth.user?.role || '').toLowerCase() === 'admin'; if (!auth.token) return <Navigate to="/login" replace />; if (!isAdmin) return <Navigate to="/" replace />; return children; }
@@ -279,20 +279,70 @@ function CartDropdown({ cartRef, auth, cartCount, setCartOpen, showToast, naviga
 
 function CartPage({ auth, cart, updateQty, removeItem, showToast }) {
   const navigate = useNavigate();
+  const [deliveryNote, setDeliveryNote] = useState('');
   const total = cart.reduce((sum, item) => sum + Number(item.product.price) * item.quantity, 0);
   const checkout = async () => {
     if (!auth.token) return showToast('Bạn cần đăng nhập để đặt hàng', 'error');
     if (!cart.length) return showToast('Giỏ hàng đang trống', 'error');
+    if (!deliveryNote.trim()) return showToast('Vui lòng nhập địa chỉ nhận hàng', 'error');
     try {
-      await api.post('/orders', { user_id: auth.user?.id || Number(localStorage.getItem('current_user_id') || 1), order_items: cart.map((x) => ({ product_id: x.product.id, quantity: x.quantity })) });
-      showToast('Đặt hàng thành công', 'success');
-      navigate('/orders');
-      window.location.reload();
+      const { data: order } = await api.post('/orders', {
+        user_id: auth.user?.id || Number(localStorage.getItem('current_user_id') || 1),
+        note: deliveryNote.trim(),
+        order_items: cart.map((x) => ({ product_id: x.product.id, quantity: x.quantity })),
+      });
+      navigate('/checkout/payment', { state: { order, deliveryNote } });
     } catch (err) {
       showToast(err?.response?.data?.detail || 'Không thể tạo đơn', 'error');
     }
   };
-  return <div className="animate-fadeUp"><SectionHeader title="Giỏ hàng" subtitle="Một đơn có thể chứa nhiều sản phẩm khác nhau." />{cart.length ? <div className="grid gap-6 lg:grid-cols-[1fr_340px]"><div className="space-y-4">{cart.map((item) => <div key={item.product.id} className="rounded-[1.75rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="flex gap-4"><img src={item.product.image_url || emptyImage} alt={item.product.name} className="h-20 w-20 rounded-2xl object-cover" /><div className="min-w-0 flex-1"><div className="text-lg font-semibold text-slate-900">{item.product.name}</div><div className="mt-1 text-sm text-slate-500">{currency.format(item.product.price)}</div><div className="mt-3 flex items-center gap-3"><input type="number" min="1" value={item.quantity} onChange={(e) => updateQty(item.product.id, Number(e.target.value))} className="w-24 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2" /><button onClick={() => removeItem(item.product.id)} className="inline-flex items-center gap-2 rounded-xl border border-stone-200 px-3 py-2 text-sm text-slate-600 hover:bg-stone-50"><Trash2 size={16} /> Xóa</button></div></div></div></div>)}</div><div className="h-fit rounded-[2rem] border border-stone-200 bg-white p-5 shadow-soft"><div className="text-lg font-semibold text-slate-900">Tổng kết</div><div className="mt-4 space-y-2 text-sm text-slate-600">{cart.map((i) => <div key={i.product.id} className="flex justify-between"><span>{i.product.name} × {i.quantity}</span><span>{currency.format(Number(i.product.price) * i.quantity)}</span></div>)}</div><div className="my-4 border-t border-stone-200 pt-4 flex justify-between text-base font-semibold"><span>Tổng tiền</span><span className="text-brand-700">{currency.format(total)}</span></div><button onClick={checkout} className="w-full rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Đặt hàng</button></div></div> : <EmptyState title="Giỏ hàng trống" description="Hãy thêm một hoặc nhiều sản phẩm để checkout." />}</div>;
+  return <div className="animate-fadeUp"><SectionHeader title="Giỏ hàng" subtitle="Một đơn có thể chứa nhiều sản phẩm khác nhau." />{cart.length ? <div className="grid gap-6 lg:grid-cols-[1fr_340px]"><div className="space-y-4">{cart.map((item) => <div key={item.product.id} className="rounded-[1.75rem] border border-stone-200 bg-white p-4 shadow-soft"><div className="flex gap-4"><img src={item.product.image_url || emptyImage} alt={item.product.name} className="h-20 w-20 rounded-2xl object-cover" /><div className="min-w-0 flex-1"><div className="text-lg font-semibold text-slate-900">{item.product.name}</div><div className="mt-1 text-sm text-slate-500">{currency.format(item.product.price)}</div><div className="mt-3 flex items-center gap-3"><input type="number" min="1" value={item.quantity} onChange={(e) => updateQty(item.product.id, Number(e.target.value))} className="w-24 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2" /><button onClick={() => removeItem(item.product.id)} className="inline-flex items-center gap-2 rounded-xl border border-stone-200 px-3 py-2 text-sm text-slate-600 hover:bg-stone-50"><Trash2 size={16} /> Xóa</button></div></div></div></div>)} </div><div className="h-fit rounded-[2rem] border border-stone-200 bg-white p-5 shadow-soft"><div className="text-lg font-semibold text-slate-900">Tổng kết</div><div className="mt-4 space-y-2 text-sm text-slate-600">{cart.map((i) => <div key={i.product.id} className="flex justify-between"><span>{i.product.name} × {i.quantity}</span><span>{currency.format(Number(i.product.price) * i.quantity)}</span></div>)}</div><div className="my-4 border-t border-stone-200 pt-4 flex justify-between text-base font-semibold"><span>Tổng tiền</span><span className="text-brand-700">{currency.format(total)}</span></div><label className="grid gap-2"><span className="text-sm font-medium text-slate-700">Địa chỉ nhận hàng</span><textarea value={deliveryNote} onChange={(e) => setDeliveryNote(e.target.value)} rows="4" className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 outline-none focus:border-brand-400 focus:bg-white" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..." /></label><button onClick={checkout} className="mt-4 w-full rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Tiếp tục thanh toán</button></div></div> : <EmptyState title="Giỏ hàng trống" description="Hãy thêm một hoặc nhiều sản phẩm để checkout." />}</div>;
+}
+
+function CheckoutPaymentPage({ auth, showToast }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const order = location.state?.order;
+  const deliveryNote = location.state?.deliveryNote || '';
+  const [method, setMethod] = useState('cod');
+
+  useEffect(() => {
+    if (!auth.token) {
+      showToast('Bạn cần đăng nhập để thanh toán', 'error');
+      navigate('/login');
+    }
+    if (!order) {
+      navigate('/orders');
+    }
+  }, [auth.token, navigate, order, showToast]);
+
+  if (!order) return null;
+
+  const isBanking = method === 'banking';
+  const transferContent = `FF${order.id} ${auth.user?.id || order.user_id}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(`bank://transfer?amount=${order.total_amount}&content=${transferContent}`)}`;
+
+  const confirm = async () => {
+    try {
+      const paymentMethod = isBanking ? 'bank_transfer' : 'cash';
+      const { data: payment } = await api.post('/payments', {
+        order_id: order.id,
+        user_id: order.user_id,
+        method: paymentMethod,
+        note: deliveryNote,
+      });
+      if (paymentMethod === 'cash') {
+        await api.patch(`/payments/${payment.id}/status`, { status: 'paid' });
+      }
+      showToast('Đã xác nhận thanh toán', 'success');
+      navigate('/orders');
+      window.location.reload();
+    } catch (err) {
+      showToast(err?.response?.data?.detail || 'Không thể xác nhận thanh toán', 'error');
+    }
+  };
+
+  return <div className="animate-fadeUp"><SectionHeader title="Chọn phương thức thanh toán" subtitle={`Đơn #${order.id} • Tổng tiền ${currency.format(Number(order.total_amount || 0))}`} /><div className="grid gap-6 lg:grid-cols-[1fr_360px]"><div className="rounded-[2rem] border border-stone-200 bg-white p-5 shadow-soft"><div className="grid gap-4 sm:grid-cols-2"><button onClick={() => setMethod('cod')} className={clsx('rounded-2xl border px-4 py-4 text-left transition', method === 'cod' ? 'border-brand-300 bg-brand-50' : 'border-stone-200 bg-white hover:bg-stone-50')}><div className="font-semibold text-slate-900">COD</div><div className="mt-1 text-sm text-slate-500">Thanh toán khi nhận hàng</div></button><button onClick={() => setMethod('banking')} className={clsx('rounded-2xl border px-4 py-4 text-left transition', method === 'banking' ? 'border-brand-300 bg-brand-50' : 'border-stone-200 bg-white hover:bg-stone-50')}><div className="font-semibold text-slate-900">Banking</div><div className="mt-1 text-sm text-slate-500">Chuyển khoản qua QR</div></button></div><div className="mt-5 rounded-2xl bg-stone-50 p-4 text-sm text-slate-600"><div className="font-semibold text-slate-900">Ghi chú nhận hàng</div><div className="mt-2 whitespace-pre-wrap leading-6">{deliveryNote || '-'}</div></div>{isBanking && <div className="mt-5 grid gap-4 md:grid-cols-[320px_1fr]"><img src={qrUrl} alt="QR chuyển khoản" className="mx-auto rounded-2xl border border-stone-200 bg-white p-3" /><div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 text-sm text-slate-700"><div className="font-semibold text-slate-900">Thông tin chuyển khoản</div><div className="mt-3 space-y-2"><div><span className="text-slate-500">Số tiền</span><div className="font-semibold text-brand-700">{currency.format(Number(order.total_amount || 0))}</div></div><div><span className="text-slate-500">Nội dung</span><div className="font-semibold text-slate-900">{transferContent}</div></div><div className="rounded-2xl bg-white p-3 text-slate-600">Vui lòng chuyển đúng số tiền và đúng nội dung để hệ thống đối soát.</div></div></div></div>}</div><div className="h-fit rounded-[2rem] border border-stone-200 bg-white p-5 shadow-soft"><div className="text-lg font-semibold text-slate-900">Xác nhận</div><div className="mt-3 text-sm text-slate-600">Sau khi xác nhận, bạn sẽ được chuyển về trang đơn hàng của mình.</div><button onClick={confirm} className="mt-5 w-full rounded-2xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Xác nhận thanh toán</button><button onClick={() => navigate('/orders')} className="mt-3 w-full rounded-2xl border border-stone-200 px-5 py-3 font-semibold text-slate-700 hover:bg-stone-50">Quay lại đơn hàng</button></div></div></div>;
 }
 
 function OrdersPage({ auth, showToast }) {

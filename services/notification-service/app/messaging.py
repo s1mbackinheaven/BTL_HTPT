@@ -13,6 +13,9 @@ logger = logging.getLogger(__name__)
 ORDER_EXCHANGE = "order_exchange"
 ORDER_CREATED_ROUTING_KEY = "order.created"
 ORDER_STATUS_UPDATED_ROUTING_KEY = "order.status_updated"
+PAYMENT_EXCHANGE = "payment_exchange"
+PAYMENT_CREATED_ROUTING_KEY = "payment.created"
+PAYMENT_PAID_ROUTING_KEY = "payment.paid"
 QUEUE_NAME = "notification_queue"
 
 
@@ -20,9 +23,10 @@ def start_consumer(session_factory):
     connection = pika.BlockingConnection(pika.URLParameters(settings.RABBITMQ_URL))
     channel = connection.channel()
     channel.exchange_declare(exchange=ORDER_EXCHANGE, exchange_type="direct", durable=True)
+    channel.exchange_declare(exchange=PAYMENT_EXCHANGE, exchange_type="direct", durable=True)
     channel.queue_declare(queue=QUEUE_NAME, durable=True)
-    channel.queue_bind(queue=QUEUE_NAME, exchange=ORDER_EXCHANGE, routing_key=ORDER_CREATED_ROUTING_KEY)
-    channel.queue_bind(queue=QUEUE_NAME, exchange=ORDER_EXCHANGE, routing_key=ORDER_STATUS_UPDATED_ROUTING_KEY)
+    for rk in [ORDER_CREATED_ROUTING_KEY, ORDER_STATUS_UPDATED_ROUTING_KEY, PAYMENT_CREATED_ROUTING_KEY, PAYMENT_PAID_ROUTING_KEY]:
+        channel.queue_bind(queue=QUEUE_NAME, exchange=ORDER_EXCHANGE if rk.startswith("order.") else PAYMENT_EXCHANGE, routing_key=rk)
 
     logger.info("notification-service consumer started and waiting for messages")
 
@@ -45,6 +49,20 @@ def start_consumer(session_factory):
                     user_id=payload["user_id"],
                     type="ORDER_STATUS_UPDATED",
                     content=f"Order #{payload['order_id']} changed from {payload['old_status']} to {payload['new_status']}",
+                    status="unread",
+                )
+            elif routing_key == PAYMENT_CREATED_ROUTING_KEY:
+                notification = Notification(
+                    user_id=payload["user_id"],
+                    type="PAYMENT_CREATED",
+                    content=f"Payment #{payload['payment_id']} created for Order #{payload['order_id']}",
+                    status="unread",
+                )
+            elif routing_key == PAYMENT_PAID_ROUTING_KEY:
+                notification = Notification(
+                    user_id=payload["user_id"],
+                    type="PAYMENT_PAID",
+                    content=f"Payment for Order #{payload['order_id']} has been paid",
                     status="unread",
                 )
             else:

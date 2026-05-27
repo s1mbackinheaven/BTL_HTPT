@@ -11,4 +11,5 @@ class Order(Base):
     order_items = Column(JSON, nullable=False)
     total_amount = Column(Numeric(10, 2), nullable=False)
     status = Column(String(50), nullable=False, default="pending")
+    note = Column(String(500), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)

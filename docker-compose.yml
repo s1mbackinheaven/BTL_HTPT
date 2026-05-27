@@ -80,9 +80,28 @@ services:
       ORDER_SERVICE_PORT: 8003
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       PRODUCT_SERVICE_BASE_URL: http://product-service:8002
+      PAYMENT_SERVICE_URL: http://payment-service:8005
     ports:
       - "8003:8003"
     command: uvicorn app.main:app --host 0.0.0.0 --port 8003
+
+  payment-service:
+    build: ./services/payment-service
+    container_name: payment-service
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: adminmySQL2004
+      PAYMENT_DB_NAME: payment_db
+      PAYMENT_SERVICE_PORT: 8005
+      ORDER_SERVICE_URL: http://order-service:8003
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "8005:8005"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8005
 
   notification-service:
     build: ./services/notification-service
@@ -109,12 +128,14 @@ services:
       - auth-service
       - product-service
       - order-service
+      - payment-service
       - notification-service
     environment:
       GATEWAY_PORT: 8000
       AUTH_SERVICE_URL: http://auth-service:8001
       PRODUCT_SERVICE_URL: http://product-service:8002
       ORDER_SERVICE_URL: http://order-service:8003
+      PAYMENT_SERVICE_URL: http://payment-service:8005
       NOTIFICATION_SERVICE_URL: http://notification-service:8004
       JWT_SECRET: change_me_please
       JWT_ALGORITHM: HS256

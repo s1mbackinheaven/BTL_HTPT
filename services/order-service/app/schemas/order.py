@@ -17,6 +17,7 @@ class OrderItemResponse(BaseModel):
 class OrderCreate(BaseModel):
     user_id: int
     order_items: list[OrderItemCreate]
+    note: str | None = None
 
 
 class OrderStatusUpdate(BaseModel):

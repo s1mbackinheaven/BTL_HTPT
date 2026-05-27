@@ -16,6 +16,7 @@ class Settings:
     MYSQL_PASSWORD: str = os.getenv("MYSQL_PASSWORD", "adminmySQL2004")
     ORDER_DB_NAME: str = os.getenv("ORDER_DB_NAME", "order_db")
     RABBITMQ_URL: str = os.getenv("RABBITMQ_URL", "amqp://guest:guest@localhost:5672/")
+    PAYMENT_SERVICE_URL: str = os.getenv("PAYMENT_SERVICE_URL", "http://payment-service:8005")
     JWT_SECRET: str = os.getenv("JWT_SECRET", "change_me_please")
     JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
 

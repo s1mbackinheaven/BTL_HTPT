@@ -3,7 +3,8 @@ from decimal import Decimal
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.clients.product_client import get_product
+from app.clients import get_payments_by_order, get_product
+from app.messaging import publish_order_created, publish_order_status_updated
 from app.core.security import get_token_payload
 from app.dependencies import get_db
 from app.messaging import publish_order_created, publish_order_status_updated
@@ -51,6 +52,7 @@ def create_order(
         order_items=enriched_items,
         total_amount=total_amount,
         status="pending",
+        note=payload.note,
     )
     db.add(order)
     db.commit()
@@ -63,6 +65,7 @@ def create_order(
             "user_id": order.user_id,
             "total_amount": str(order.total_amount),
             "status": order.status,
+            "note": order.note,
             "order_items": order.order_items,
         }
     )
@@ -97,6 +100,14 @@ def get_order(order_id: int, db: Session = Depends(get_db), token_payload: dict 
     return order
 
 
+@router.get("/internal/{order_id}", response_model=OrderResponse)
+def get_order_internal(order_id: int, db: Session = Depends(get_db)):
+    order = db.query(Order).filter(Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
+    return order
+
+
 @router.patch("/{order_id}/status", response_model=OrderResponse)
 def update_order_status(
     order_id: int,
@@ -114,6 +125,11 @@ def update_order_status(
     order = db.query(Order).filter(Order.id == order_id).first()
     if not order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
+
+    if new_status == "completed":
+        payments = get_payments_by_order(order_id)
+        if not any(str(payment.get("status", "")).lower() == "paid" for payment in payments):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Order can only be completed when payment is paid")
 
     old_status = order.status
     order.status = new_status
