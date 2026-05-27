@@ -40,7 +40,7 @@ The system is composed of the following services:
 
 ### High-level flow
 - Client talks to `api-gateway`
-- `api-gateway` forwards requests to internal services
+- `api-gateway` forwards requests to internal services.
 - `auth-service` handles authentication and JWT issuing
 - `product-service` handles product CRUD
 - `order-service` handles order creation and publishes `order.created` events
