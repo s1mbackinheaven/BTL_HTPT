@@ -1716,3 +1716,20 @@
 2026-05-26 21:43:22,760 | INFO | api-gateway.http | request | request_id=36bfae5f-2b70-485c-98a4-176f514b1df8 | method=GET | path=/api/products/6 | status_code=200 | elapsed_ms=443.07
 2026-05-26 21:43:23,195 | INFO | httpx | HTTP Request: GET http://localhost:8002/products/6 "HTTP/1.1 200 OK"
 2026-05-26 21:43:23,196 | INFO | api-gateway.http | request | request_id=2972f3be-5675-48f2-8c04-4707d001bc8f | method=GET | path=/api/products/6 | status_code=200 | elapsed_ms=435.28
+2026-05-27 13:04:50,856 | INFO | api-gateway.http | request | request_id=fa3afe1f-7104-4d8c-9c15-b40a74a289ad | method=GET | path=/docs | status_code=200 | elapsed_ms=0.29
+2026-05-27 13:04:50,951 | INFO | api-gateway.http | request | request_id=a5d8e9d7-2d72-436a-a1b6-cb0fad26ffc5 | method=GET | path=/openapi.json | status_code=200 | elapsed_ms=7.49
+2026-05-27 13:04:52,729 | INFO | httpx | HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+2026-05-27 13:04:52,736 | INFO | httpx | HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+2026-05-27 13:04:52,737 | INFO | httpx | HTTP Request: GET http://localhost:8004/health "HTTP/1.1 200 OK"
+2026-05-27 13:04:52,742 | INFO | httpx | HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+2026-05-27 13:04:52,744 | INFO | api-gateway.http | request | request_id=7f8f98d7-2b3b-49dc-b980-935caf140e59 | method=GET | path=/dashboard | status_code=200 | elapsed_ms=922.45
+2026-05-27 13:08:26,264 | INFO | httpx | HTTP Request: POST http://localhost:8001/auth/login "HTTP/1.1 200 OK"
+2026-05-27 13:08:26,266 | INFO | api-gateway.http | request | request_id=04de5211-8edf-4dad-9a86-6e5fac3068d1 | method=POST | path=/api/auth/login | status_code=200 | elapsed_ms=546.71
+2026-05-27 13:09:10,148 | INFO | httpx | HTTP Request: PUT http://localhost:8001/users/2 "HTTP/1.1 404 Not Found"
+2026-05-27 13:09:10,150 | INFO | api-gateway.http | request | request_id=6e614b6c-b605-459c-bf85-171169d1bf1f | method=PUT | path=/api/users/2 | status_code=404 | elapsed_ms=204.71
+2026-05-27 13:09:28,688 | INFO | httpx | HTTP Request: PUT http://localhost:8001/users/2 "HTTP/1.1 404 Not Found"
+2026-05-27 13:09:28,689 | INFO | api-gateway.http | request | request_id=680a47c3-71b8-4856-ac5f-1c85757f14cd | method=PUT | path=/api/users/2 | status_code=404 | elapsed_ms=179.25
+2026-05-27 13:09:33,442 | INFO | httpx | HTTP Request: PUT http://localhost:8001/users/2 "HTTP/1.1 404 Not Found"
+2026-05-27 13:09:33,443 | INFO | api-gateway.http | request | request_id=f8ac178f-ba71-4f46-9293-f09c36f81560 | method=PUT | path=/api/users/2 | status_code=404 | elapsed_ms=170.46
+2026-05-27 13:09:42,077 | INFO | httpx | HTTP Request: PUT http://localhost:8001/users/2 "HTTP/1.1 404 Not Found"
+2026-05-27 13:09:42,078 | INFO | api-gateway.http | request | request_id=085ac6c6-2a45-4c83-b0ac-819e64216a6e | method=PUT | path=/api/users/2 | status_code=404 | elapsed_ms=187.09

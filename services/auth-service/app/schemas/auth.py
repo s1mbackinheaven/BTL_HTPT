@@ -13,6 +13,17 @@ class UserLogin(BaseModel):
     password: str
 
 
+class UserUpdate(BaseModel):
+    full_name: str | None = Field(default=None, min_length=1, max_length=255)
+    email: EmailStr | None = None
+    phone: str | None = Field(default=None, max_length=30)
+
+
+class UserAdminUpdate(UserUpdate):
+    role: str | None = Field(default=None, max_length=50)
+    is_active: bool | None = None
+
+
 class UserResponse(BaseModel):
     id: int
     full_name: str

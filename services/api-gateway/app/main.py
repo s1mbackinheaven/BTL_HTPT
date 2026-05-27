@@ -184,7 +184,34 @@ async def auth_me(request: Request, _: dict = Depends(require_token)):
     description="Get all users from the auth-service.",
 )
 async def auth_users(request: Request, _: dict = Depends(require_token)):
-    return await forward_request(request, settings.AUTH_SERVICE_URL, "users")
+    return await forward_request(request, settings.AUTH_SERVICE_URL, "auth/users")
+
+
+@app.get(
+    "/api/users/{user_id}",
+    summary="Get user by id",
+    description="Get a single user from the auth-service. Requires JWT.",
+)
+async def auth_get_user(user_id: int, request: Request, _: dict = Depends(require_token)):
+    return await forward_request(request, settings.AUTH_SERVICE_URL, f"auth/users/{user_id}")
+
+
+@app.put(
+    "/api/users/me",
+    summary="Update current user",
+    description="Update current user profile in the auth-service. Requires JWT.",
+)
+async def auth_update_me(request: Request, payload: dict = Body(...), _: dict = Depends(require_token)):
+    return await forward_request(request, settings.AUTH_SERVICE_URL, "auth/me", json_body=payload)
+
+
+@app.put(
+    "/api/users/{user_id}",
+    summary="Admin update user",
+    description="Update a user from the auth-service. Requires admin JWT.",
+)
+async def auth_update_user(user_id: int, request: Request, payload: dict = Body(...), _: dict = Depends(require_token)):
+    return await forward_request(request, settings.AUTH_SERVICE_URL, f"auth/users/{user_id}", json_body=payload)
 
 
 # Product service
